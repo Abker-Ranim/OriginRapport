@@ -29,7 +29,7 @@
 \ProcessOptions\relax
 
 % load the book class using a4paper
-\LoadClass[11pt,a4paper, oneside]{book}
+\LoadClass[12pt,a4paper, oneside]{book}
 \usepackage[a4paper]{geometry}
 
 % give the header a bit more room for fancyhdr below

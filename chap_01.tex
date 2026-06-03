@@ -2,22 +2,145 @@
 
 \section*{Introduction}
 
-\section{Cadre général du projet}
+Ce chapitre présente le contexte général du projet CrediWise. Il introduit l'entreprise d'accueil IntechGeeks, décrit le secteur de la microfinance en Tunisie, qui motive le projet, analyse les points forts et les limites de la solution existante DigiLAF, présente la plateforme CrediWise proposée et expose la méthodologie Scrum adoptée pour le développement.
 
 \section[Organisme d'accueil]{Organisme d'accueil}
 
 \subsection{Présentation d'IntechGeeks}
 
-\subsection{Organisation d'IntechGeeks}
+IntechGeeks est une société d'ingénierie et d'intelligence artificielle au service de clients en Europe et en Afrique. Ses activités couvrent l'architecture logicielle cloud-native, l'intégration de systèmes et l'intelligence artificielle appliquée, avec un accent particulier sur la modernisation des systèmes d'information organisationnels. La figure~\ref{fig:intech_logo} présente le logo de l'entreprise.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/intech.png}
+    \caption{Logo d'IntechGeeks}
+    \label{fig:intech}
+\end{figure}
+
+\subsection{Valeurs fondamentales}
+
+Le travail de l'entreprise s'articule autour de principes qui guident la collaboration et la réalisation technique :
+
+\begin{itemize}
+    \item \textbf{Rigueur technique :} Les systèmes livrés sont testés, documentés et instrumentés. Les tests automatisés, les pipelines reproductibles et l'observabilité sont considérés comme des critères essentiels de qualité du projet.
+
+    \item \textbf{Immersion avant exécution :} Avant le début du développement, l'entreprise analyse le contexte opérationnel du client, les systèmes existants, les contraintes et les flux de travail, afin que la solution proposée corresponde aux besoins réels de l'entreprise.
+
+    \item \textbf{Transfert de connaissances :} La livraison du projet comprend une documentation, l'explication des choix techniques et un accompagnement destiné à aider les équipes clientes à exploiter la solution livrée.
+
+    \item \textbf{Transparence :} L'avancement du projet, les décisions techniques et les risques identifiés sont communiqués aux parties prenantes tout au long de la mission.
+\end{itemize}
+
+\subsection{Structure organisationnelle}
+
 
 \section{Présentation du sujet}
 
+Ce projet de fin d'études porte sur la conception et le développement de \textbf{CrediWise},
+une plateforme web de gestion du crédit. L'objectif est de digitaliser et sécuriser
+l'ensemble du cycle de vie du crédit, de l'entrée en relation client jusqu'à la décision
+finale et la traçabilité.
+
+La solution s'inscrit dans une architecture moderne basée sur des microservices et vise
+à réduire la dépendance aux solutions low-code existantes tout en améliorant la flexibilité,
+la scalabilité et la maintenabilité du système.
+
 \subsection{Contexte général du projet}
+
+Le secteur de la microfinance en Tunisie est supervisé par l'Autorité de Contrôle de la
+Microfinance (ACM). Les principaux acteurs — AKDI, Al Amal Microfinance, Zitouna Tamkeen,
+Advans Tunisie, Taysir Microfinance et Enda Tamweel, entre autres — jouent un rôle essentiel
+dans l'inclusion financière et le soutien des micro-entrepreneurs.
+
+Malgré la croissance du secteur, la gestion du crédit reste un processus complexe,
+fortement documentaire et encore peu digitalisé en Tunisie et en Afrique en général.
+
+Dans ce contexte, IntechGeeks a initié \textbf{CrediWise} comme module de gestion du crédit
+intégré à la plateforme KAYA, un middleware cloud-native permettant l'interconnexion de
+systèmes financiers hétérogènes (Core Banking, CRM et ERP).
 
 \section{Problématique}
 
+Les solutions existantes de gestion du crédit souffrent de plusieurs limites, notamment
+en matière de scalabilité, de flexibilité et de maintenabilité.
+
+Les processus restent souvent fragmentés, fortement dépendants de plateformes low-code
+propriétaires, ce qui entraîne :
+
+\begin{itemize}
+    \item une limitation des performances sous forte charge,
+    \item un coût élevé d'exploitation,
+    \item une faible interopérabilité avec les systèmes externes,
+    \item une traçabilité insuffisante des décisions,
+    \item et une absence d'automatisation avancée (scoring, règles métier).
+\end{itemize}
+
+Ces contraintes rendent nécessaire la conception d'une solution moderne, modulaire et
+évolutive capable de supporter des processus de crédit complexes.
+
 \section{Étude de l'existant}
+
+La solution étudiée dans ce projet est \textbf{DigiLAF}, une application de gestion des
+crédits développée avec Microsoft Power Apps (Canvas App) et déployée dans plusieurs
+institutions financières en Tunisie et en Afrique.
+
+Elle digitalise l'ensemble du cycle de crédit, de la création de la demande jusqu'au
+déblocage final, via un workflow basé sur le Business Process Flow.
+
+Le processus comprend cinq étapes principales :
+
+\begin{itemize}
+    \item \textbf{Analyse :} évaluation initiale et génération d'un rapport préliminaire.
+    \item \textbf{Checklist :} vérification des documents requis.
+    \item \textbf{Analyse des risques :} évaluation de la solvabilité et du risque.
+    \item \textbf{Revue comité :} validation et décision du comité de crédit.
+    \item \textbf{Visite de gestion :} contrôle terrain si nécessaire.
+\end{itemize}
+
+Power Automate est utilisé pour automatiser les transitions et les notifications, tandis que
+la gestion des accès repose sur les rôles de la Power Platform.
+
+\subsection{Limites de la solution}
+
+Malgré ses avantages, DigiLAF présente plusieurs limitations :
+
+\begin{itemize}
+    \item scalabilité limitée,
+    \item coût élevé (licences et connecteurs),
+    \item dépendance forte à Microsoft,
+    \item limitation de volume de données (2\,000 enregistrements par requête),
+    \item fragmentation du workflow,
+    \item absence d'IA et de scoring automatique,
+    \item faible observabilité et traçabilité,
+    \item absence de portail client.
+\end{itemize}
 
 \section{Solution proposée}
 
+Pour répondre à ces limites, ce projet propose \textbf{CrediWise}, une plateforme web de
+gestion du crédit basée sur une architecture modulaire et indépendante des solutions
+low-code.
+
+La plateforme centralise la gestion des clients, des demandes de crédit, des analyses,
+des décisions et de la traçabilité dans une interface unifiée.
+
+\subsection*{Fonctionnalités principales}
+
+\begin{itemize}
+    \item \textbf{Administration des utilisateurs et agences :} gestion des rôles et profils.
+    \item \textbf{Gestion des clients :} centralisation des données clients.
+    \item \textbf{Gestion des demandes de crédit :} création, brouillons, garanties et export PDF.
+    \item \textbf{Routage par produit :} orientation automatique du workflow.
+    \item \textbf{Analyse du crédit :} dossier structuré avec étapes d'évaluation.
+    \item \textbf{Scoring et règles métier :} aide à la décision et traçabilité.
+    \item \textbf{Modules de contrôle :} checklist, risques et comité de crédit.
+    \item \textbf{Suivi du décaissement :} clôture du cycle de vie du crédit.
+\end{itemize}
+
+Sur le plan architectural, CrediWise repose sur une séparation claire entre frontend,
+backend, gestion d'identité (Keycloak) et bases de données. Cette architecture améliore
+la scalabilité, la maintenabilité et la traçabilité, tout en répondant aux limites de la
+solution existante.
+
 \section*{Conclusion}
+

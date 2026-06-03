@@ -1,3 +1,55 @@
-\chapter*{Introduction générale}
+﻿\chapter*{Introduction générale}
 \addcontentsline{toc}{chapter}{Introduction générale}
 \markboth{Introduction générale}{}
+
+La gestion du crédit est un processus critique pour les établissements financiers,
+englobant l'entrée en relation client, la préparation des dossiers, l'évaluation des risques,
+la prise de décision et la traçabilité. Dans de nombreux environnements opérationnels,
+ces activités sont réparties entre des outils hétérogènes ou reposent sur des plateformes
+low-code qui imposent des contraintes en matière de scalabilité, d'interopérabilité et
+de maintenabilité à long terme.
+
+Une analyse de DigiLAF, la solution de gestion du crédit existante déployée chez
+l'entreprise d'accueil, a révélé que si elle numérise avec succès le workflow central du
+crédit, son architecture introduit des limitations en matière de scalabilité, de flexibilité
+vis-à-vis des fournisseurs et d'auditabilité qui deviennent critiques à grande échelle.
+Ces contraintes motivent la conception d'une plateforme sur mesure construite sur des
+technologies ouvertes et maintenables.
+
+Pour répondre à ces besoins, ce projet propose \textbf{CrediWise}, une plateforme web sécurisée
+organisée autour de domaines métier indépendants. Le rapport présente l'analyse,
+la conception et l'implémentation de la plateforme en dix chapitres, chaque chapitre-sprint
+correspondant soit à la fondation DevOps, soit à un ou plusieurs microservices
+de l'architecture cible alignés sur une phase du workflow de demande de crédit :
+
+\begin{itemize}
+    \item \textbf{Chapitre 1 : Contexte du Projet} — présente l'entreprise d'accueil, le contexte
+    du projet, la solution existante, la solution proposée et la méthodologie.
+
+    \item \textbf{Chapitre 2 : Analyse et spécification des besoins} — Ce chapitre aborde la définition des
+exigences fonctionnelles et non fonctionnelles. Nous y présentons en détail la planification des sprints
+ainsi que la gestion du backlog produit, tout en décrivant l'architecture technique de l'application.
+
+    
+
+    \item \textbf{Chapitre 3 : Sprint 1, Authentification et gestion de la clientèle} — présente la base de sécurité fondée sur Keycloak, ainsi que l’administration des agences, des gestionnaires et des rôles. Il introduit également la gestion des dossiers clients, les données de référence et l’exposition du domaine client aux autres services via les mécanismes d’interconnexion entre services.
+
+    \item \textbf{Chapitre 4 : Sprint 2, Service de Demande de Crédit} — détaille la création des demandes, la gestion des brouillons, le routage basé sur les produits et les transitions d’état du cycle de vie.
+
+    \item \textbf{Chapitre 5 : Sprint 3, Service d'Analyse} — décrit le dossier d’analyse, le workflow par étapes et le calcul du scoring pour les produits éligibles à l’analyse.
+
+    \item \textbf{Chapitre 6 : Sprint 4, Service Checklist} — présente la checklist pré-comité qui consolide les documents et les sections de vérification requis avant la phase comité.
+
+    \item \textbf{Chapitre 7 : Sprint 5, Service d'Analyse des Risques} — décrit le formulaire d’analyse du risque de crédit (CRA), les modules d’avis et de Q\&R, ainsi que la piste d’audit associée.
+
+    \item \textbf{Chapitre 8 : Sprint 6, Services du comité de crédit et de décaissement} — présente le procès-verbal de décision du comité ainsi que le procès-verbal de décaissement, et la clôture du cycle de vie de la demande de crédit.
+
+    \item \textbf{Chapitre 9 : Sprint 0, Fondation DevOps et Observabilité} — établit le
+    pipeline CI/CD Azure DevOps, l'automatisation de build Maven, la génération
+    d'images Docker, la topologie docker-compose de production avec le reverse proxy
+    Nginx, l'instrumentation OpenTelemetry de chaque service backend, et la stack
+    d'observabilité SigNoz utilisée pour le tracing distribué, les métriques et les logs
+    centralisés.
+
+    \item \textbf{Chapitre 10 : } —
+\end{itemize}
