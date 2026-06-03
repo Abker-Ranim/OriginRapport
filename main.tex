@@ -1,0 +1,58 @@
+\pdfminorversion=7
+
+%========= File containing the main LaTex document ========%
+%                                                          %
+% Copyright (C) ISI - All Rights Reserved                  %
+% Proprietary                                              %
+% Written by Med Hossam <med.hossam@gmail.com>, April 2016 %
+%                                                          %
+% @author: HEDHILI Med Houssemeddine                       %
+% @linkedin: http://tn.linkedin.com/in/medhossam           %
+%==========================================================%
+
+\documentclass[pfe]{./tpl/isipfe}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{pdfpages}
+\graphicspath{{./img/}}
+
+%\usepackage{hyperref}
+
+\input{./tpl/new_commands}
+\begin{document}
+    \frontmatter
+        \includepdf{garde.pdf} 
+        \thispagestyle{frontmatter}
+        \setcounter{secnumdepth}{3}
+        \setcounter{tocdepth}{2}
+        \dominitoc
+        \tableofcontents
+        \adjustmtc
+        \thispagestyle{frontmatter}
+        
+        \listoffigures
+        \thispagestyle{frontmatter}
+        \listoftables
+        \thispagestyle{frontmatter}
+        
+        
+    
+    \mainmatter
+        \input{introduction}
+        \clearpage
+        
+        \input{chap_01}
+        \clearpage
+        
+        
+        \input{chap_03}
+        \clearpage
+        
+        \input{chap_04}
+        \clearpage
+        
+        \input{conclusion}
+
+    
+     
+\end{document}
