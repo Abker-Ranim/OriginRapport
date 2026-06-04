@@ -8,3 +8,11 @@
 {\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {\filterminitoc {1.}4}Étude de l'existant}{\reset@font\mtcSfont 6}{section.1.4}}
 {\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {\if@rl \I {1.4.1}\else \textLR {1.4.1}\fi }Limites de la solution}{\reset@font\mtcSSfont 7}{subsection.1.4.1}}
 {\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {\filterminitoc {1.}5}Solution proposée}{\reset@font\mtcSfont 7}{section.1.5}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {\filterminitoc {1.}6}Méthodologie adoptée}{\reset@font\mtcSfont 8}{section.1.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {\if@rl \I {1.6.1}\else \textLR {1.6.1}\fi }Formalisme de modélisation}{\reset@font\mtcSSfont 8}{subsection.1.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {\if@rl \I {2.6.1}\else \textLR {1.6.2}\fi }Choix de la méthodologie de travail}{\reset@font\mtcSSfont 8}{subsection.1.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {\if@rl \I {3.6.1}\else \textLR {1.6.3}\fi }Répartition des rôles}{\reset@font\mtcSSfont 9}{subsection.1.6.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {\if@rl \I {3.6.1}\else \textLR {1.6.3}\fi .1}Scrum Master}{\reset@font\mtcSSSfont 9}{subsubsection.1.6.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {\if@rl \I {3.6.1}\else \textLR {1.6.3}\fi .2}Product Owner}{\reset@font\mtcSSSfont 9}{subsubsection.1.6.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {\if@rl \I {3.6.1}\else \textLR {1.6.3}\fi .3}Équipe de Développement}{\reset@font\mtcSSSfont 9}{subsubsection.1.6.3.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {\if@rl \I {3.6.1}\else \textLR {1.6.3}\fi .4}Les événements de Scrum}{\reset@font\mtcSSSfont 10}{subsubsection.1.6.3.4}}

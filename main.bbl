@@ -16,5 +16,65 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{OMG_UML}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=4d6b6fbad838f7618c462458711482fa}{%
+           family={{Object Management Group}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{fullhash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{fullhashraw}{4d6b6fbad838f7618c462458711482fa}
+      \strng{bibnamehash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{authorbibnamehash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{authornamehash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{authorfullhash}{4d6b6fbad838f7618c462458711482fa}
+      \strng{authorfullhashraw}{4d6b6fbad838f7618c462458711482fa}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Consulté le \the\year]}
+      \field{title}{Unified Modeling Language (UML) Specification}
+      \verb{urlraw}
+      \verb https://www.omg.org/spec/UML
+      \endverb
+      \verb{url}
+      \verb https://www.omg.org/spec/UML
+      \endverb
+    \endentry
+    \entry{BocasayScrum}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=b949b7c79ffc421d3ee2ef1d992c9460}{%
+           family={Bocasay},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{fullhash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{fullhashraw}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{bibnamehash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{authorbibnamehash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{authornamehash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{authorfullhash}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \strng{authorfullhashraw}{b949b7c79ffc421d3ee2ef1d992c9460}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Consulté le \the\year]}
+      \field{title}{Méthode Scrum : quels sont ses bénéfices pour les développements web ?}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.bocasay.com/fr/methode-scrum-benefices-developpements-web/
+      \endverb
+      \verb{url}
+      \verb https://www.bocasay.com/fr/methode-scrum-benefices-developpements-web/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

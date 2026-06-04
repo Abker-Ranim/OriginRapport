@@ -987,6 +987,7 @@ OUTPUT main.mtc2
 OUTPUT main.mtc3
 OUTPUT main.mtc4
 OUTPUT main.mtc5
+OUTPUT main.mtc6
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr17.tfm
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT .\main.toc
@@ -1064,6 +1065,12 @@ INPUT .\img\intech.png
 INPUT .\img\intech.png
 INPUT .\img\intech.png
 INPUT .\img\intech.png
+INPUT .\img\Scrum.png
+INPUT .\img\Scrum.png
+INPUT .\img\Scrum.png
+INPUT .\img\Scrum.png
+INPUT .\img\Scrum.png
+INPUT .\img\Scrum.png
 INPUT .\chap_03.tex
 INPUT .\chap_03.tex
 INPUT .\chap_03.tex
@@ -1097,6 +1104,10 @@ INPUT .\conclusion.tex
 INPUT .\conclusion.tex
 INPUT .\conclusion.tex
 INPUT conclusion.tex
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmtt12.tfm
 OUTPUT main.maf
 INPUT .\main.mtc
 INPUT .\main.mtc
@@ -1119,7 +1130,11 @@ INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbxi10.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbxi10.pfb
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc10.pfb
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc10.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
 INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt12.pfb
+INPUT C:\Users\ranim\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt12.pfb

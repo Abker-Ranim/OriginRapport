@@ -142,5 +142,92 @@ backend, gestion d'identité (Keycloak) et bases de données. Cette architecture
 la scalabilité, la maintenabilité et la traçabilité, tout en répondant aux limites de la
 solution existante.
 
+\section{Méthodologie adoptée}
+
+La réussite d'un projet informatique repose sur une méthodologie de travail structurée.
+Celle-ci permet d'organiser les activités, de respecter les délais et de garantir la qualité
+des livrables tout au long du cycle de développement.
+
+\subsection{Formalisme de modélisation}
+
+Pour la spécification et la conception du système, nous avons adopté le langage
+\textbf{UML} (Unified Modeling Language)~\cite{OMG_UML}. Ce langage permet de représenter les besoins
+fonctionnels ainsi que l'architecture du système à travers plusieurs diagrammes :
+
+\begin{itemize}
+    \item \textbf{Le diagramme de cas d'utilisation}, qui décrit les interactions entre
+    les acteurs et le système.
+    \item \textbf{Le diagramme de classes}, qui représente la structure statique du système,
+    ses classes et leurs relations.
+    \item \textbf{Le diagramme de séquence}, qui illustre les échanges entre les différents
+    composants du système.
+\end{itemize}
+
+\subsection{Choix de la méthodologie de travail}
+
+Afin d'assurer une gestion efficace du projet, nous avons adopté la méthodologie
+\textbf{Agile Scrum}~\cite{BocasayScrum}. Cette approche favorise une livraison progressive des fonctionnalités
+tout en permettant une adaptation continue aux besoins.
+
+Les principaux avantages de Scrum sont :
+
+\begin{itemize}
+    \item Une meilleure visibilité sur l'avancement du projet.
+    \item Une implication régulière des parties prenantes.
+    \item Une priorisation des besoins selon leur importance.
+    \item Une organisation du travail en sprints, facilitant le suivi du projet.
+\end{itemize}
+
+\subsection{Répartition des rôles}
+
+Une équipe Scrum est composée du Product Owner, du Scrum Master et de l'équipe de
+développement. Ces rôles complémentaires collaborent afin d'assurer le bon déroulement
+du projet et la livraison régulière de fonctionnalités à valeur ajoutée.
+
+\subsubsection{Scrum Master}
+
+Le Scrum Master veille à l'application des principes Scrum et accompagne l'équipe dans
+leur mise en œuvre. Il facilite la communication et contribue à la résolution des obstacles
+rencontrés durant le projet.
+
+\subsubsection{Product Owner}
+
+Le Product Owner est responsable de la gestion du Product Backlog et de la priorisation
+des besoins. Il assure la liaison entre les parties prenantes et l'équipe de développement
+afin de garantir l'adéquation de la solution aux besoins métier.
+
+\subsubsection{Équipe de Développement}
+
+L'équipe de développement regroupe les membres chargés de concevoir, développer et tester
+la solution. À chaque sprint, elle produit un incrément fonctionnel respectant les critères
+de qualité définis.
+
+\subsubsection{Les événements de Scrum}
+
+La méthodologie Scrum repose sur plusieurs événements permettant de suivre l'avancement
+du projet :
+
+\begin{itemize}
+    \item \textbf{Sprint Planning :} définition des objectifs et des tâches du sprint.
+    \item \textbf{Daily Scrum :} réunion quotidienne de suivi et de coordination.
+    \item \textbf{Sprint Review :} présentation et validation des fonctionnalités réalisées.
+    \item \textbf{Sprint Retrospective :} identification des améliorations à apporter aux
+    prochains sprints.
+    \item \textbf{Backlog Refinement :} clarification et estimation des éléments du
+    Product Backlog.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Scrum.png}
+    \caption{Cycle de vie SCRUM}
+    \label{fig:scrum_lifecycle}
+\end{figure}
+
 \section*{Conclusion}
 
+Ce chapitre débute par une présentation de l'organisme d'accueil. Par la suite, nous avons
+exposé une vue globale du projet, incluant la description de la solution actuelle, ses limites,
+la problématique identifiée, ainsi que la solution envisagée. Enfin, nous avons expliqué la
+méthodologie de gestion de projet adoptée. Le chapitre suivant se focalisera sur l'analyse
+et la spécification des besoins du projet.

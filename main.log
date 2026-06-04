@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.6)  3 JUN 2026 20:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.6)  4 JUN 2026 17:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1601,12 +1601,12 @@ Package hyperref Info: Link coloring OFF on input line 23.
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
-<garde.pdf, id=126, 597.55246pt x 845.07718pt>
+<garde.pdf, id=146, 597.55246pt x 845.07718pt>
 File: garde.pdf Graphic file (type pdf)
 <use garde.pdf>
 Package pdftex.def Info: garde.pdf  used on input line 25.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-<garde.pdf, id=128, page=1, 597.55246pt x 845.07718pt>
+<garde.pdf, id=148, page=1, 597.55246pt x 845.07718pt>
 File: garde.pdf Graphic file (type pdf)
 <use garde.pdf, page 1>
 Package pdftex.def Info: garde.pdf , page1 used on input line 25.
@@ -1667,6 +1667,10 @@ Package minitoc Info: I0033
 Package minitoc Info: I0033
 (minitoc)             Writing main.mtc5.
 \openout4 = `main.mtc5'.
+
+Package minitoc Info: I0033
+(minitoc)             Writing main.mtc6.
+\openout4 = `main.mtc6'.
 
  (main.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 10.
@@ -1779,7 +1783,7 @@ Overfull \hbox (9.10825pt too wide) in paragraph at lines 11--12
 \T1/lmr/m/n/12 de sys-tèmes et l'in-tel-li-gence ar-ti-fi-cielle ap-pli-quée, avec un ac-cent par-ti-cu-lier sur la mo-der-ni-sa-tion
  []
 
-<img/intech.png, id=239, 253.69781pt x 230.36063pt>
+<img/intech.png, id=267, 253.69781pt x 230.36063pt>
 File: img/intech.png Graphic file (type png)
 <use img/intech.png>
 Package pdftex.def Info: img/intech.png  used on input line 15.
@@ -1794,7 +1798,23 @@ Overfull \hbox (6.464pt too wide) in paragraph at lines 67--69
 []\T1/lmr/m/n/12 Les pro-ces-sus res-tent sou-vent frag-men-tés, for-te-ment dé-pen-dants de pla-te-formes low-code
  []
 
-[6] [7]) [8] (chap_03.tex
+[6] [7] [8]
+Overfull \hbox (1.46399pt too wide) in paragraph at lines 195--198
+[]\T1/lmr/m/n/12 Le Pro-duct Ow-ner est res-pon-sable de la ges-tion du Pro-duct Ba-ck-log et de la prio-ri-sa-tion
+ []
+
+
+Overfull \hbox (19.651pt too wide) in paragraph at lines 207--209
+[]\T1/lmr/m/n/12 La mé-tho-do-lo-gie Scrum re-pose sur plu-sieurs évé-ne-ments per-met-tant de suivre l'avan-ce-ment
+ []
+
+[9]
+<./img/Scrum.png, id=303, 770.88pt x 364.36125pt>
+File: ./img/Scrum.png Graphic file (type png)
+<use ./img/Scrum.png>
+Package pdftex.def Info: ./img/Scrum.png  used on input line 222.
+(pdftex.def)             Requested size: 401.47127pt x 189.75804pt.
+) [10 <./img/Scrum.png>] (chap_03.tex
 Chapitre \textLR{2}.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1820,10 +1840,10 @@ LaTeX Font Warning: Font shape `T1/lmr/bx/scit' undefined
 
 \openout4 = `main.mtc'.
 
-(main.mtc3) [9
+(main.mtc3) [11
 
 
-]) [10] (chap_04.tex
+]) [12] (chap_04.tex
 Chapitre \textLR{3}.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1849,7 +1869,7 @@ LaTeX Font Warning: Font shape `T1/lmr/bx/scit' undefined
 
 \openout4 = `main.mtc'.
 
-(main.mtc4) [11
+(main.mtc4) [13
 
 
 ]
@@ -1857,10 +1877,17 @@ Overfull \hbox (4.43903pt too wide) in paragraph at lines 3--3
  |[]\T1/lmr/bx/n/17.28 Tâche 1 : Mise en route du CBS si-mulé via Do-cker| 
  []
 
-) [12]
+) [14]
 Overfull \vbox (837.1864pt too high) has occurred while \output is active []
 
- [13] (conclusion.tex)
+ [15] (conclusion.tex) [16
+
+
+]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 58.
+ (C:\Users\ranim\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
 (minitoc)             Creating the main.maf file.
@@ -1882,7 +1909,7 @@ Package minitoc(hints) Warning: W0024
 (minitoc(hints))                Some hints have been written 
 (minitoc(hints))                in the main.log file.
 
-[14
+[17
 
 
 ] (main.aux)
@@ -1898,23 +1925,23 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B9956FB72B791671D036CE5A354384F2;5876.
+(rerunfilecheck)             Checksum: 8F76B9993E3E9FFA8C7BEE208E4BAD01;6864.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47444 strings out of 467691
- 940854 string characters out of 5414988
- 1843774 words of memory out of 5000000
- 75695 multiletter control sequences out of 15000+600000
- 688508 words of font info for 71 fonts, out of 8000000 for 9000
+ 47742 strings out of 467691
+ 946781 string characters out of 5414988
+ 1843953 words of memory out of 5000000
+ 75973 multiletter control sequences out of 15000+600000
+ 688826 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 105i,17n,131p,787b,4038s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb>
-Output written on main.pdf (19 pages, 370816 bytes).
+ 105i,17n,131p,787b,4046s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/ranim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (22 pages, 499633 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
- 273 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 401 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 318 words of extra memory for PDF output out of 10000 (max. 10000000)
 
