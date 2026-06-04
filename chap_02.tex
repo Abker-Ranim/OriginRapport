@@ -1,0 +1,226 @@
+﻿\chapter{Analyse et Spécification des besoins}
+
+\section*{Introduction}
+
+Dans ce chapitre, nous identifions les caractéristiques du projet en analysant les besoins
+fonctionnels et non fonctionnels. Nous définissons également les acteurs et clarifions les
+exigences, qui sont ensuite représentées à travers un diagramme global de cas d'utilisation.
+Enfin, nous présentons l'organisation du développement en sprints.
+
+\section{Spécification des acteurs}
+
+\subsection{Identification des acteurs}
+
+L'identification des acteurs permet de définir les périmètres d'accès à l'application.
+Dans CrediWise, les acteurs correspondent à des profils opérationnels définis dans Keycloak
+et propagés au frontend et au backend via un mécanisme d'autorisation basé sur les rôles.
+
+Les acteurs suivants ont été identifiés :
+
+\begin{itemize}
+    \item[\ensuremath{\triangleright}] \textbf{Super Administrateur (SUPER\_ADMIN) :} dispose du niveau d'accès le plus
+    élevé. Il gère les agences, les comptes gestionnaires, les rôles, les règles d'affichage
+    ainsi que les données administratives du système.
+
+    \item[\ensuremath{\triangleright}] \textbf{Utilisateur technique (TECH\_USER) :} assure des tâches d'administration
+    technique, principalement liées à la gestion des agences et des comptes gestionnaires,
+    sans intervenir dans les processus métier de décision.
+
+    \item[\ensuremath{\triangleright}] \textbf{Chargé de relation client (CRO) :} consulte les dossiers clients, suit
+    les demandes de crédit et complète les dossiers d'analyse lorsqu'ils lui sont affectés.
+
+    \item[\ensuremath{\triangleright}] \textbf{Agent front office (FRONT\_OFFICE) :} assure l'accueil des clients, crée
+    les fiches clients, prépare les demandes de crédit et soumet les brouillons pour
+    traitement.
+
+    \item[\ensuremath{\triangleright}] \textbf{Décideur agence (BRANCH\_DM) :} examine les demandes de crédit et les
+    dossiers d'analyse au niveau de l'agence. Il participe aux décisions et aux transitions
+    de statut selon les règles d'autorisation.
+
+    \item[\ensuremath{\triangleright}] \textbf{Décideur siège (HEAD\_OFFICE\_DM) :} consulte les dossiers nécessitant
+    une validation centrale et participe au processus de décision pour les demandes hors
+    périmètre agence.
+
+    \item[\ensuremath{\triangleright}] \textbf{Analyste risque (RISK\_ANALYST) :} analyse les demandes de crédit, les
+    données d'évaluation et les résultats de scoring afin de contribuer à l'analyse des
+    risques.
+
+    \item[\ensuremath{\triangleright}] \textbf{Auditeur (READ\_ONLY) :} dispose d'un accès en lecture seule, utilisé
+    pour les activités d'audit, de contrôle et de vérification.
+
+    \item[\ensuremath{\triangleright}] \textbf{Fournisseur d'identité (Keycloak) :} acteur système externe chargé de
+    l'authentification, de la gestion des sessions et de l'émission des jetons. Il fournit
+    également les rôles consommés par le frontend et le backend.
+\end{itemize}
+
+\section{Spécification des besoins}
+
+Dans cette section, nous analysons les besoins fonctionnels et non fonctionnels du système,
+constituant une étape essentielle dans la définition de l'architecture du projet.
+
+\subsection{Besoins fonctionnels}
+
+\subsubsection*{\ensuremath{\triangleright}~Authentification et sécurité}
+
+\begin{itemize}
+    \item Le système authentifie les utilisateurs via Keycloak et récupère les jetons
+    d'accès à l'aide de l'adaptateur keycloak-js.
+    \item Le frontend protège les routes en fonction des rôles de l'utilisateur, tandis
+    que le backend applique les autorisations via l'annotation \texttt{@RolesAllowed}.
+    \item Les jetons d'accès sont attachés aux requêtes API internes et renouvelés
+    automatiquement avant expiration afin d'assurer la continuité des sessions.
+    \item La déconnexion est gérée par Keycloak, garantissant la fermeture complète de
+    la session au niveau du fournisseur d'identité.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Gestion des utilisateurs et des agences}
+
+\begin{itemize}
+    \item Le service Manager permet de créer, modifier, désactiver et consulter les
+    comptes gestionnaires.
+    \item Le système prend en charge la gestion complète des agences (création, mise à
+    jour, consultation et activation/désactivation).
+    \item Les gestionnaires peuvent être associés à des agences, avec une cohérence
+    assurée entre les rôles Keycloak et les données applicatives.
+    \item Chaque utilisateur peut consulter et mettre à jour son profil selon les droits
+    définis par l'API.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Gestion des clients}
+
+\begin{itemize}
+    \item Le service Customer gère les fiches clients (personnes physiques et morales).
+    \item Les données incluent l'identité, les coordonnées, l'agence, le type de compte,
+    le segment, le secteur d'activité, le scoring et le cycle client.
+    \item Le système permet la recherche de clients par identifiant ou coordonnées, ainsi
+    que la consultation paginée des listes.
+    \item Les données de référence (segments, secteurs, activités, types de compte, etc.)
+    sont exposées pour garantir une saisie structurée.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Gestion des demandes de crédit}
+
+\begin{itemize}
+    \item Le service Credit Request permet la création et la mise à jour des demandes de
+    crédit au statut \texttt{DRAFT}.
+    \item Une demande inclut les informations client, le montant, la durée, le produit,
+    les garanties, les garants, la capacité de remboursement et les indicateurs de risque.
+    \item Une fois soumise, la demande est routée selon le produit : les produits 101,
+    102 et 103 sont dirigés vers l'analyse, les autres vers la checklist pré-comité.
+    \item Les acteurs autorisés peuvent mettre à jour le statut dans le cadre du cycle
+    de vie du crédit.
+    \item Une version PDF de la demande peut être générée pour archivage et documentation.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Analyse du crédit et scoring}
+
+\begin{itemize}
+    \item Le service Analysis crée un dossier d'analyse pour chaque demande éligible.
+    \item Le processus suit plusieurs étapes : informations client, objet du crédit,
+    risques client, commerciaux et financiers, et données complémentaires.
+    \item Les opérations de sauvegarde et de validation sont limitées aux profils autorisés.
+    \item Un module de scoring calcule et enregistre le score de crédit associé à la demande.
+    \item Les règles d'affichage sont versionnées afin de garantir la traçabilité des décisions.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Liste de contrôle pré-comité}
+
+\begin{itemize}
+    \item Le service Checklist consolide les documents et vérifications nécessaires avant
+    le passage en comité.
+    \item La checklist est générée ou mise à jour à partir de la demande et enrichie via
+    le service Customer.
+    \item Elle couvre les documents, garanties, archivage, préparation au décaissement
+    et contrôles front office/back office.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Analyse du risque crédit}
+
+\begin{itemize}
+    \item Le service Risk Analysis gère le formulaire d'analyse du risque crédit (CRA).
+    \item Le formulaire suit plusieurs statuts contrôlés : brouillon, en révision, validé,
+    envoyé au comité, ou archivé.
+    \item Les analystes peuvent compléter les sections d'avis et de questions-réponses.
+    \item Un module d'audit enregistre l'historique des modifications.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Décision du comité}
+
+\begin{itemize}
+    \item Le service Credit Committee enregistre et expose les décisions du comité de crédit.
+    \item Les décisions sont initialisées à partir des services amont et mises à jour après
+    validation.
+    \item Elles influencent directement le cycle de vie de la demande (approbation, rejet
+    ou décaissement).
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Décaissement}
+
+\begin{itemize}
+    \item Le service Disbursement enregistre les informations de décaissement pour les
+    demandes approuvées.
+    \item L'enregistrement est basé sur l'instantané de la demande de crédit.
+    \item Une fois validé, le statut passe à « décaissé », et le compteur client est mis
+    à jour via gRPC.
+\end{itemize}
+
+\subsubsection*{\ensuremath{\triangleright}~Auditabilité et traçabilité}
+
+\begin{itemize}
+    \item Chaque service enregistre les métadonnées de création et de mise à jour des entités.
+    \item La sécurité contrôle les accès aux routes API et aux services backend.
+    \item Les utilisateurs en lecture seule peuvent consulter les données sans pouvoir les
+    modifier, garantissant les besoins d'audit et de conformité.
+\end{itemize}
+
+\subsection{Besoins non fonctionnels}
+
+\subsubsection*{\ensuremath{\triangleright}~Performance}
+
+Le backend est implémenté avec Quarkus, offrant un temps de démarrage rapide et une faible
+consommation mémoire. Les API REST intègrent des mécanismes de pagination et de filtrage
+afin de limiter la taille des réponses. Le frontend, développé avec Vite et React, assure
+une navigation fluide et réactive en réduisant les rechargements de page.
+
+\subsubsection*{\ensuremath{\triangleright}~Scalabilité}
+
+L'architecture repose sur une séparation des principaux domaines métier en services
+indépendants : Manager, Customer, Credit Request et Analysis. Cette approche permet à chaque
+service, ainsi qu'à sa base de données associée, d'évoluer et d'être dimensionné
+indépendamment en fonction de la charge.
+
+\subsubsection*{\ensuremath{\triangleright}~Fiabilité et disponibilité}
+
+L'infrastructure locale est déployée via Docker Compose, incluant PostgreSQL, Keycloak et
+pgAdmin. La séparation des services et des bases de données limite l'impact des défaillances
+à un domaine spécifique et garantit la reproductibilité des environnements de développement.
+
+\subsubsection*{\ensuremath{\triangleright}~Maintenabilité}
+
+Chaque service backend est structuré comme un projet Maven indépendant avec son propre code,
+sa configuration, ses tests et ses migrations Flyway. Cette organisation réduit le couplage
+entre services et facilite la maintenance ainsi que l'évolution du système.
+
+\subsubsection*{\ensuremath{\triangleright}~Conformité}
+
+Le système traite des données personnelles et financières, ce qui impose des exigences
+strictes de traçabilité et de contrôle d'accès. L'utilisation d'instantanés immuables des
+demandes et de métadonnées d'audit garantit la cohérence des données et la conformité aux
+exigences réglementaires.
+
+\subsubsection*{\ensuremath{\triangleright}~Sécurité}
+
+L'authentification est centralisée via Keycloak. Les services backend valident les jetons
+JWT et extraient les rôles configurés pour appliquer les règles d'autorisation. Les contrôles
+d'accès sont appliqués au niveau des API et renforcés au niveau métier lorsque nécessaire.
+Les jetons ne sont pas stockés dans le stockage local du navigateur afin de réduire les
+risques de sécurité.
+
+\subsubsection*{\ensuremath{\triangleright}~Ergonomie et expérience utilisateur}
+
+Le frontend est une application monopage (SPA) développée avec React et TypeScript. Il
+propose une navigation basée sur les rôles, une gestion multilingue via i18next, une
+validation des formulaires et un système cohérent de gestion des erreurs afin d'améliorer
+l'expérience utilisateur.
+
+\section*{Conclusion}
