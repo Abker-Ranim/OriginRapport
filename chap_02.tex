@@ -223,4 +223,155 @@ propose une navigation basée sur les rôles, une gestion multilingue via i18nex
 validation des formulaires et un système cohérent de gestion des erreurs afin d'améliorer
 l'expérience utilisateur.
 
+\subsection{Backlog de Produit}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{1.\arabic{table}}
+
+Après avoir défini les besoins fonctionnels de notre solution, le backlog de produit est présenté
+dans le tableau~\ref{tab:backlog} ci-après :
+
+\begin{longtable}{|p{3cm}|p{8.5cm}|c|c|}
+\hline
+\textbf{Sprint} &
+\textbf{UserStory} &
+\textbf{Priorité} &
+\textbf{Estimation} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Sprint} &
+\textbf{UserStory} &
+\textbf{Priorité} &
+\textbf{Estimation} \\
+\hline
+\endhead
+\endlastfoot
+
+% -------- Sprint 1 --------
+\multirow{10}{3cm}{\textbf{Sprint 1 : Authentification et gestion de la clientèle}}
+& En tant que gestionnaire, je veux me connecter à la plateforme avec mes identifiants Keycloak, afin d'accéder à mon espace de travail sécurisé. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux que mon rôle détermine automatiquement mes droits d'accès. & 1 & 10h \\ \cline{2-4}
+& En tant que super administrateur, je veux créer et gérer les comptes gestionnaires .& 1 & 12h \\ \cline{2-4}
+& En tant que super administrateur, je veux créer et gérer les agences. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux consulter et modifier mon profil, afin de maintenir mes données à jour. & 2 & 5h \\ \cline{2-4}
+& En tant que gestionnaire, je veux créer et gérer un client  & 1 & 12h \\ \cline{2-4}
+& En tant que gestionnaire, je veux rechercher et filtrer les clients par nom, CIN ou segment, afin de retrouver rapidement un dossier existant. & 2 & 6h \\ \cline{2-4}
+& En tant que super administrateur, je veux suspendre ou réactiver un compte gestionnaire, afin d'appliquer les politiques RH de l'établissement. & 3 & 4h \\ \hline
+
+% -------- Sprint 2 --------
+\multirow{10}{3cm}{\textbf{Sprint 2 : Service de Demande de Crédit}}
+& En tant que gestionnaire \texttt{FRONT\_OFFICE}, je veux créer une demande de crédit en brouillon pour un client (montant, durée, produit, objet), afin d'initier le processus d'octroi. & 1 & 12h \\ \cline{2-4}
+& En tant que gestionnaire, je veux prendre un instantané des données client au moment de la soumission, afin de conserver une trace immuable des informations utilisées. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux ajouter des garants et des garanties (collatéral, hypothèque) à la demande, afin de sécuriser le dossier de crédit. & 1 & 10h \\ \cline{2-4}
+& En tant que gestionnaire, je veux soumettre la demande de crédit, afin de déclencher automatiquement son acheminement vers le bon service selon le produit choisi. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux modifier une demande en statut brouillon, afin de corriger les informations avant soumission. & 2 & 5h \\ \cline{2-4}
+& En tant que gestionnaire, je veux consulter la liste de toutes les demandes avec leur statut (brouillon, soumis, en analyse, décaissé, rejeté), afin de suivre l'avancement du portefeuille. & 2 & 6h \\ \cline{2-4}
+& En tant que gestionnaire, je veux supprimer une demande en statut brouillon, afin d'annuler une saisie erronée. & 3 & 3h \\ \cline{2-4}
+& En tant que système, je veux router automatiquement les produits 101/102/103 vers le dossier d'analyse et les produits 104/105 vers la checklist pré-comité, afin de respecter le circuit d'approbation propre à chaque produit. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux accéder au catalogue des produits de crédit disponibles, afin de choisir le bon produit lors de la création d'une demande. & 2 & 4h \\ \cline{2-4}
+& En tant que gestionnaire, je veux voir le score de risque calculé pour la demande soumise, afin d'avoir une première évaluation du niveau de risque. & 3 & 6h \\ \hline
+
+% -------- Sprint 3 --------
+\multirow{11}{3cm}{\textbf{Sprint 3 : Service d'Analyse}}
+& En tant qu'analyste de crédit, je veux accéder au dossier d'analyse en 7 étapes associé à une demande soumise, afin de conduire l'instruction du dossier de manière structurée. & 1 & 10h \\ \cline{2-4}
+& En tant qu'analyste, je veux renseigner l'étape 1 (visite client) avec la date de visite, le lieu et les observations terrain, afin de documenter le contact avec le client. & 1 & 8h \\ \cline{2-4}
+& En tant qu'analyste, je veux renseigner l'étape 2 (objet du crédit) avec le type d'actif et la finalité du financement, afin de qualifier l'investissement. & 1 & 6h \\ \cline{2-4}
+& En tant qu'analyste, je veux évaluer le risque client à l'étape 3 (incidents bancaires, litiges, restrictions), afin d'identifier les signaux d'alerte. & 1 & 8h \\ \cline{2-4}
+& En tant qu'analyste, je veux évaluer le risque commercial à l'étape 4 (marché, concurrence, environnement), afin d'apprécier la viabilité économique du projet. & 2 & 8h \\ \cline{2-4}
+& En tant qu'analyste, je veux analyser les états financiers (bilan, compte de résultat) à l'étape 5 via extraction OCR automatique, afin d'accélérer la saisie des données financières. & 1 & 16h \\ \cline{2-4}
+& En tant qu'analyste, je veux évaluer les garanties proposées à l'étape 6 (valeur, type, rang), afin de quantifier la couverture du risque. & 2 & 8h \\ \cline{2-4}
+& En tant qu'analyste, je veux rédiger la proposition finale à l'étape 7 avec la recommandation et les conditions suggérées, afin de soumettre un avis motivé au comité. & 1 & 8h \\ \cline{2-4}
+& En tant qu'analyste, je veux sauvegarder chaque étape en mode brouillon ou la confirmer définitivement, afin de pouvoir reprendre le travail en plusieurs sessions. & 2 & 6h \\ \cline{2-4}
+& En tant qu'analyste, je veux voir la recommandation IA (APPROUVER/REJETER/RÉVISER) générée après confirmation de l'étape 7, afin d'obtenir un avis complémentaire non contraignant. & 2 & 10h \\ \cline{2-4}
+& En tant qu'administrateur, je veux gérer les règles d'affichage des étapes d'analyse (actif/inactif, version), afin d'adapter le formulaire aux évolutions réglementaires. & 3 & 6h \\ \hline
+
+% -------- Sprint 4 --------
+\multirow{7}{3cm}{\textbf{Sprint 4 : Service Checklist}}
+& En tant que gestionnaire, je veux générer automatiquement la checklist associée à une demande de crédit, afin de disposer d'une liste structurée des documents et validations requis. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux consulter et cocher les éléments de la checklist pré-comité section par section, afin de m'assurer que le dossier est complet avant présentation. & 1 & 10h \\ \cline{2-4}
+& En tant que gestionnaire, je veux valider les éléments de la checklist de décaissement (documents signés, conditions levées), afin de confirmer que toutes les conditions préalables sont remplies. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux gérer les entrées de la checklist de garanties (type, valeur, statut de validation), afin de vérifier la conformité des sûretés. & 2 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux valider les sections de la checklist SFO et contrôle, afin de respecter les procédures internes de vérification. & 2 & 6h \\ \cline{2-4}
+& En tant que système, je veux déclencher une recommandation IA après la validation d'une section de checklist, afin d'alimenter en continu l'analyse assistée. & 3 & 6h \\ \cline{2-4}
+& En tant que gestionnaire, je veux régénérer (rafraîchir) la checklist d'une demande, afin de réinitialiser les éléments en cas de modification du dossier. & 3 & 4h \\ \hline
+
+% -------- Sprint 5 --------
+\multirow{8}{3cm}{\textbf{Sprint 5 : Service d'Analyse des Risques}}
+& En tant qu'analyste risque (\texttt{CRO}/\texttt{RISK\_ANALYST}), je veux créer un formulaire CRA (Analyse du Risque de Crédit) pour une demande, afin de formaliser l'évaluation du risque de manière indépendante. & 1 & 10h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux renseigner les éléments de checklist du formulaire CRA par section, afin de valider la conformité documentaire et procédurale. & 1 & 8h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux répondre aux questions d'assurance qualité (Q\&A) du formulaire CRA, afin de documenter les vérifications effectuées. & 1 & 8h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux saisir des opinions de risque par thème (avec couleur et note), afin d'émettre une appréciation qualitative structurée sur chaque dimension du risque. & 1 & 10h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux faire progresser le statut du formulaire CRA (\texttt{BROUILLON} $\rightarrow$ \texttt{EN\_RÉVISION} $\rightarrow$ \texttt{EN\_ATTENTE\_CRO} $\rightarrow$ \texttt{VALIDÉ} $\rightarrow$ \texttt{ENVOYÉ\_AU\_COMITÉ}), afin de piloter l'avancement du processus d'évaluation. & 2 & 6h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux consulter la piste d'audit du formulaire CRA (qui a fait quoi et quand), afin d'assurer la traçabilité des actions. & 2 & 6h \\ \cline{2-4}
+& En tant que système, je veux déclencher une recommandation IA après la soumission d'une opinion de risque, afin d'enrichir l'évaluation par un avis algorithmique. & 3 & 6h \\ \cline{2-4}
+& En tant qu'analyste risque, je veux accéder aux métadonnées de référence du formulaire CRA (sections, thèmes d'opinion, types de Q\&A), afin de bénéficier d'un formulaire normalisé. & 2 & 4h \\ \hline
+
+% -------- Sprint 6 --------
+\multirow{9}{3cm}{\textbf{Sprint 6 : Services du comité de crédit et de décaissement}}
+& En tant que décideur (\texttt{BRANCH\_DM}/\texttt{HEAD\_OFFICE\_DM}), je veux accéder au dossier du comité de crédit pour une demande, afin de préparer la session de décision. & 1 & 8h \\ \cline{2-4}
+& En tant que décideur, je veux enregistrer la décision du comité (APPROUVÉ, REJETÉ, CONDITIONNEL) avec le montant et la durée approuvés, afin de formaliser l'issue de la délibération. & 1 & 10h \\ \cline{2-4}
+& En tant que décideur, je veux saisir les conditions d'approbation et les observations du comité, afin de préciser les engagements attendus du client. & 1 & 8h \\ \cline{2-4}
+& En tant que décideur, je veux enregistrer une dérogation (motif, commentaire, valideur) lorsque la décision déroge aux politiques standards, afin d'assurer la traçabilité des exceptions. & 2 & 8h \\ \cline{2-4}
+& En tant que gestionnaire du comité, je veux renseigner le formulaire de préparation (nom du rapporteur, nom du décideur), afin d'organiser la présentation du dossier. & 2 & 5h \\ \cline{2-4}
+& En tant que système, je veux déclencher une recommandation IA à chaque étape clé du comité (décision, préparation, dérogation), afin d'assister le décideur par un avis objectif. & 2 & 8h \\ \cline{2-4}
+& En tant que gestionnaire \texttt{FRONT\_OFFICE}, je veux créer le dossier de décaissement pour une demande approuvée, afin d'initier la mise en place du crédit. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux enregistrer les informations de décaissement (montant, date, référence Amplitude), afin de tracer la mise à disposition des fonds. & 1 & 8h \\ \cline{2-4}
+& En tant que gestionnaire, je veux confirmer le décaissement effectif, afin de clôturer le cycle d'octroi et d'incrémenter le cycle crédit du client. & 1 & 6h \\ \hline
+
+\caption{Backlog de Produit}
+\label{tab:backlog}
+\end{longtable}
+
+\subsection{Planification des sprints}
+
+Le système sera développé de manière itérative selon la méthodologie Scrum. Chaque sprint
+permettra de livrer progressivement de nouvelles fonctionnalités, contribuant à la construction
+du produit final. Le tableau~\ref{tab:sprints} présente la planification des sprints :
+
+\begin{longtable}{|c|p{8cm}|c|c|}
+\hline
+\textbf{Sprint} &
+\textbf{Libellé} &
+\textbf{Début prévu} &
+\textbf{Fin prévu} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Sprint} &
+\textbf{Libellé} &
+\textbf{Début prévu} &
+\textbf{Fin prévu} \\
+\hline
+\endhead
+\endlastfoot
+
+\multirow{2}{*}{\textbf{1}}
+& Conception générale et mise en place de l'infrastructure & 16-02-2025 & 21-02-2025 \\ \cline{2-4}
+& Authentification Keycloak et gestion de la clientèle     & 24-02-2025 & 07-03-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{2}}
+& Modélisation et création des demandes de crédit          & 10-03-2025 & 19-03-2025 \\ \cline{2-4}
+& Soumission, scoring et routage des demandes              & 20-03-2025 & 28-03-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{3}}
+& Dossier d'analyse — étapes 1 à 4 (visite client, objet, risques) & 31-03-2025 & 11-04-2025 \\ \cline{2-4}
+& Analyse financière OCR et proposition finale — étapes 5 à 7      & 14-04-2025 & 25-04-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{4}}
+& Checklist pré-comité et checklist de décaissement        & 28-04-2025 & 02-05-2025 \\ \cline{2-4}
+& Checklist garanties, SFO et contrôles                   & 05-05-2025 & 09-05-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{5}}
+& Formulaire CRA — checklist risque et questions Q\&A      & 12-05-2025 & 16-05-2025 \\ \cline{2-4}
+& Opinions de risque, workflow CRA et piste d'audit        & 19-05-2025 & 23-05-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{6}}
+& Comité de crédit — décision, dérogation et préparation   & 26-05-2025 & 06-06-2025 \\ \cline{2-4}
+& Décaissement, clôture du dossier et recommandation IA    & 09-06-2025 & 16-06-2025 \\ \hline
+
+\caption{Planification des sprints}
+\label{tab:sprints}
+\end{longtable}
+
 \section*{Conclusion}
