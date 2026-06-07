@@ -12,9 +12,13 @@
 
 \documentclass[pfe]{./tpl/isipfe}
 \usepackage{lmodern}
+\usepackage{longtable}
+\usepackage{multirow}
 \usepackage[hidelinks]{hyperref}
 \usepackage{url}
 \usepackage{pdfpages}
+\usepackage{pifont}
+\usepackage{pdflscape}
 \graphicspath{{./img/}}
 
 %\usepackage{hyperref}
@@ -35,9 +39,12 @@
         \thispagestyle{frontmatter}
         \listoftables
         \thispagestyle{frontmatter}
-        
-        
-    
+
+        \input{abbreviations}
+        \adjustmtc
+        \thispagestyle{frontmatter}
+
+
     \mainmatter
         \input{introduction}
         \clearpage

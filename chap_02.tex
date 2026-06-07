@@ -18,37 +18,37 @@ et propagés au frontend et au backend via un mécanisme d'autorisation basé su
 Les acteurs suivants ont été identifiés :
 
 \begin{itemize}
-    \item[\ensuremath{\triangleright}] \textbf{Super Administrateur (SUPER\_ADMIN) :} dispose du niveau d'accès le plus
+    \item[\ding{226}] \textbf{Super Administrateur :} dispose du niveau d'accès le plus
     élevé. Il gère les agences, les comptes gestionnaires, les rôles, les règles d'affichage
     ainsi que les données administratives du système.
 
-    \item[\ensuremath{\triangleright}] \textbf{Utilisateur technique (TECH\_USER) :} assure des tâches d'administration
+    \item[\ding{226}] \textbf{Utilisateur technique :} assure des tâches d'administration
     technique, principalement liées à la gestion des agences et des comptes gestionnaires,
     sans intervenir dans les processus métier de décision.
 
-    \item[\ensuremath{\triangleright}] \textbf{Chargé de relation client (CRO) :} consulte les dossiers clients, suit
+    \item[\ding{226}] \textbf{Chargé de relation client (CRO) :} consulte les dossiers clients, suit
     les demandes de crédit et complète les dossiers d'analyse lorsqu'ils lui sont affectés.
 
-    \item[\ensuremath{\triangleright}] \textbf{Agent front office (FRONT\_OFFICE) :} assure l'accueil des clients, crée
+    \item[\ding{226}] \textbf{Agent front office :} assure l'accueil des clients, crée
     les fiches clients, prépare les demandes de crédit et soumet les brouillons pour
     traitement.
 
-    \item[\ensuremath{\triangleright}] \textbf{Décideur agence (BRANCH\_DM) :} examine les demandes de crédit et les
+    \item[\ding{226}] \textbf{Décideur agence :} examine les demandes de crédit et les
     dossiers d'analyse au niveau de l'agence. Il participe aux décisions et aux transitions
     de statut selon les règles d'autorisation.
 
-    \item[\ensuremath{\triangleright}] \textbf{Décideur siège (HEAD\_OFFICE\_DM) :} consulte les dossiers nécessitant
+    \item[\ding{226}] \textbf{Décideur siège :} consulte les dossiers nécessitant
     une validation centrale et participe au processus de décision pour les demandes hors
     périmètre agence.
 
-    \item[\ensuremath{\triangleright}] \textbf{Analyste risque (RISK\_ANALYST) :} analyse les demandes de crédit, les
+    \item[\ding{226}] \textbf{Analyste risque :} analyse les demandes de crédit, les
     données d'évaluation et les résultats de scoring afin de contribuer à l'analyse des
     risques.
 
-    \item[\ensuremath{\triangleright}] \textbf{Auditeur (READ\_ONLY) :} dispose d'un accès en lecture seule, utilisé
+    \item[\ding{226}] \textbf{Auditeur :} dispose d'un accès en lecture seule, utilisé
     pour les activités d'audit, de contrôle et de vérification.
 
-    \item[\ensuremath{\triangleright}] \textbf{Fournisseur d'identité (Keycloak) :} acteur système externe chargé de
+    \item[\ding{226}] \textbf{Fournisseur d'identité (Keycloak) :} acteur système externe chargé de
     l'authentification, de la gestion des sessions et de l'émission des jetons. Il fournit
     également les rôles consommés par le frontend et le backend.
 \end{itemize}
@@ -60,20 +60,20 @@ constituant une étape essentielle dans la définition de l'architecture du proj
 
 \subsection{Besoins fonctionnels}
 
-\subsubsection*{\ensuremath{\triangleright}~Authentification et sécurité}
+\subsubsection*{\ding{226}~Authentification et sécurité}
 
 \begin{itemize}
     \item Le système authentifie les utilisateurs via Keycloak et récupère les jetons
     d'accès à l'aide de l'adaptateur keycloak-js.
     \item Le frontend protège les routes en fonction des rôles de l'utilisateur, tandis
-    que le backend applique les autorisations via l'annotation \texttt{@RolesAllowed}.
+    que le backend applique les autorisations via l'annotation \textit{@RolesAllowed}.
     \item Les jetons d'accès sont attachés aux requêtes API internes et renouvelés
     automatiquement avant expiration afin d'assurer la continuité des sessions.
     \item La déconnexion est gérée par Keycloak, garantissant la fermeture complète de
     la session au niveau du fournisseur d'identité.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Gestion des utilisateurs et des agences}
+\subsubsection*{\ding{226}~Gestion des utilisateurs et des agences}
 
 \begin{itemize}
     \item Le service Manager permet de créer, modifier, désactiver et consulter les
@@ -86,7 +86,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     définis par l'API.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Gestion des clients}
+\subsubsection*{\ding{226}~Gestion des clients}
 
 \begin{itemize}
     \item Le service Customer gère les fiches clients (personnes physiques et morales).
@@ -98,11 +98,11 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     sont exposées pour garantir une saisie structurée.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Gestion des demandes de crédit}
+\subsubsection*{\ding{226}~Gestion des demandes de crédit}
 
 \begin{itemize}
     \item Le service Credit Request permet la création et la mise à jour des demandes de
-    crédit au statut \texttt{DRAFT}.
+    crédit au statut brouillon.
     \item Une demande inclut les informations client, le montant, la durée, le produit,
     les garanties, les garants, la capacité de remboursement et les indicateurs de risque.
     \item Une fois soumise, la demande est routée selon le produit : les produits 101,
@@ -112,7 +112,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     \item Une version PDF de la demande peut être générée pour archivage et documentation.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Analyse du crédit et scoring}
+\subsubsection*{\ding{226}~Analyse du crédit et scoring}
 
 \begin{itemize}
     \item Le service Analysis crée un dossier d'analyse pour chaque demande éligible.
@@ -123,7 +123,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     \item Les règles d'affichage sont versionnées afin de garantir la traçabilité des décisions.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Liste de contrôle pré-comité}
+\subsubsection*{\ding{226}~Liste de contrôle pré-comité}
 
 \begin{itemize}
     \item Le service Checklist consolide les documents et vérifications nécessaires avant
@@ -134,7 +134,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     et contrôles front office/back office.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Analyse du risque crédit}
+\subsubsection*{\ding{226}~Analyse du risque crédit}
 
 \begin{itemize}
     \item Le service Risk Analysis gère le formulaire d'analyse du risque crédit (CRA).
@@ -144,7 +144,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     \item Un module d'audit enregistre l'historique des modifications.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Décision du comité}
+\subsubsection*{\ding{226}~Décision du comité}
 
 \begin{itemize}
     \item Le service Credit Committee enregistre et expose les décisions du comité de crédit.
@@ -154,7 +154,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     ou décaissement).
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Décaissement}
+\subsubsection*{\ding{226}~Décaissement}
 
 \begin{itemize}
     \item Le service Disbursement enregistre les informations de décaissement pour les
@@ -164,7 +164,7 @@ constituant une étape essentielle dans la définition de l'architecture du proj
     à jour via gRPC.
 \end{itemize}
 
-\subsubsection*{\ensuremath{\triangleright}~Auditabilité et traçabilité}
+\subsubsection*{\ding{226}~Auditabilité et traçabilité}
 
 \begin{itemize}
     \item Chaque service enregistre les métadonnées de création et de mise à jour des entités.
@@ -175,40 +175,40 @@ constituant une étape essentielle dans la définition de l'architecture du proj
 
 \subsection{Besoins non fonctionnels}
 
-\subsubsection*{\ensuremath{\triangleright}~Performance}
+\subsubsection*{\ding{226}~Performance}
 
 Le backend est implémenté avec Quarkus, offrant un temps de démarrage rapide et une faible
 consommation mémoire. Les API REST intègrent des mécanismes de pagination et de filtrage
 afin de limiter la taille des réponses. Le frontend, développé avec Vite et React, assure
 une navigation fluide et réactive en réduisant les rechargements de page.
 
-\subsubsection*{\ensuremath{\triangleright}~Scalabilité}
+\subsubsection*{\ding{226}~Scalabilité}
 
 L'architecture repose sur une séparation des principaux domaines métier en services
 indépendants : Manager, Customer, Credit Request et Analysis. Cette approche permet à chaque
 service, ainsi qu'à sa base de données associée, d'évoluer et d'être dimensionné
 indépendamment en fonction de la charge.
 
-\subsubsection*{\ensuremath{\triangleright}~Fiabilité et disponibilité}
+\subsubsection*{\ding{226}~Fiabilité et disponibilité}
 
 L'infrastructure locale est déployée via Docker Compose, incluant PostgreSQL, Keycloak et
 pgAdmin. La séparation des services et des bases de données limite l'impact des défaillances
 à un domaine spécifique et garantit la reproductibilité des environnements de développement.
 
-\subsubsection*{\ensuremath{\triangleright}~Maintenabilité}
+\subsubsection*{\ding{226}~Maintenabilité}
 
 Chaque service backend est structuré comme un projet Maven indépendant avec son propre code,
 sa configuration, ses tests et ses migrations Flyway. Cette organisation réduit le couplage
 entre services et facilite la maintenance ainsi que l'évolution du système.
 
-\subsubsection*{\ensuremath{\triangleright}~Conformité}
+\subsubsection*{\ding{226}~Conformité}
 
 Le système traite des données personnelles et financières, ce qui impose des exigences
 strictes de traçabilité et de contrôle d'accès. L'utilisation d'instantanés immuables des
 demandes et de métadonnées d'audit garantit la cohérence des données et la conformité aux
 exigences réglementaires.
 
-\subsubsection*{\ensuremath{\triangleright}~Sécurité}
+\subsubsection*{\ding{226}~Sécurité}
 
 L'authentification est centralisée via Keycloak. Les services backend valident les jetons
 JWT et extraient les rôles configurés pour appliquer les règles d'autorisation. Les contrôles
@@ -216,7 +216,7 @@ d'accès sont appliqués au niveau des API et renforcés au niveau métier lorsq
 Les jetons ne sont pas stockés dans le stockage local du navigateur afin de réduire les
 risques de sécurité.
 
-\subsubsection*{\ensuremath{\triangleright}~Ergonomie et expérience utilisateur}
+\subsubsection*{\ding{226}~Ergonomie et expérience utilisateur}
 
 Le frontend est une application monopage (SPA) développée avec React et TypeScript. Il
 propose une navigation basée sur les rôles, une gestion multilingue via i18next, une
@@ -231,93 +231,75 @@ l'expérience utilisateur.
 Après avoir défini les besoins fonctionnels de notre solution, le backlog de produit est présenté
 dans le tableau~\ref{tab:backlog} ci-après :
 
-\begin{longtable}{|p{3cm}|p{8.5cm}|c|c|}
+\begin{longtable}{|>{\centering\arraybackslash}p{2.8cm}|>{\raggedright\arraybackslash}p{8.5cm}|c|c|}
 \hline
-\textbf{Sprint} &
-\textbf{UserStory} &
-\textbf{Priorité} &
-\textbf{Estimation} \\
+\textbf{Sprint} & \textbf{Récit Utilisateur} & \textbf{Priorité} & \textbf{Estimation} \\
 \hline
 \endfirsthead
 \hline
-\textbf{Sprint} &
-\textbf{UserStory} &
-\textbf{Priorité} &
-\textbf{Estimation} \\
+\textbf{Sprint} & \textbf{Récit Utilisateur} & \textbf{Priorité} & \textbf{Estimation} \\
 \hline
 \endhead
 \endlastfoot
 
 % -------- Sprint 1 --------
-\multirow{10}{3cm}{\textbf{Sprint 1 : Authentification et gestion de la clientèle}}
-& En tant que gestionnaire, je veux me connecter à la plateforme avec mes identifiants Keycloak, afin d'accéder à mon espace de travail sécurisé. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux que mon rôle détermine automatiquement mes droits d'accès. & 1 & 10h \\ \cline{2-4}
-& En tant que super administrateur, je veux créer et gérer les comptes gestionnaires .& 1 & 12h \\ \cline{2-4}
-& En tant que super administrateur, je veux créer et gérer les agences. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux consulter et modifier mon profil, afin de maintenir mes données à jour. & 2 & 5h \\ \cline{2-4}
-& En tant que gestionnaire, je veux créer et gérer un client  & 1 & 12h \\ \cline{2-4}
-& En tant que gestionnaire, je veux rechercher et filtrer les clients par nom, CIN ou segment, afin de retrouver rapidement un dossier existant. & 2 & 6h \\ \cline{2-4}
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 1 : Authentification et gestion de la clientèle}} \\ \hline
+& En tant que gestionnaire, je veux me connecter à la plateforme avec mes identifiants Keycloak, afin d'accéder à mon espace de travail sécurisé. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux que mon rôle détermine automatiquement mes droits d'accès. & 1 & 10h \\ \hline
+& En tant que super administrateur, je veux créer et gérer les comptes gestionnaires. & 1 & 12h \\ \hline
+& En tant que super administrateur, je veux créer et gérer les agences. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux consulter et modifier mon profil, afin de maintenir mes données à jour. & 2 & 5h \\ \hline
+& En tant que gestionnaire, je veux créer et gérer un client. & 1 & 12h \\ \hline
+& En tant que gestionnaire, je veux rechercher et filtrer les clients par nom, CIN ou segment, afin de retrouver rapidement un dossier existant. & 2 & 6h \\ \hline
 & En tant que super administrateur, je veux suspendre ou réactiver un compte gestionnaire, afin d'appliquer les politiques RH de l'établissement. & 3 & 4h \\ \hline
 
 % -------- Sprint 2 --------
-\multirow{10}{3cm}{\textbf{Sprint 2 : Service de Demande de Crédit}}
-& En tant que gestionnaire \texttt{FRONT\_OFFICE}, je veux créer une demande de crédit en brouillon pour un client (montant, durée, produit, objet), afin d'initier le processus d'octroi. & 1 & 12h \\ \cline{2-4}
-& En tant que gestionnaire, je veux prendre un instantané des données client au moment de la soumission, afin de conserver une trace immuable des informations utilisées. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux ajouter des garants et des garanties (collatéral, hypothèque) à la demande, afin de sécuriser le dossier de crédit. & 1 & 10h \\ \cline{2-4}
-& En tant que gestionnaire, je veux soumettre la demande de crédit, afin de déclencher automatiquement son acheminement vers le bon service selon le produit choisi. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux modifier une demande en statut brouillon, afin de corriger les informations avant soumission. & 2 & 5h \\ \cline{2-4}
-& En tant que gestionnaire, je veux consulter la liste de toutes les demandes avec leur statut (brouillon, soumis, en analyse, décaissé, rejeté), afin de suivre l'avancement du portefeuille. & 2 & 6h \\ \cline{2-4}
-& En tant que gestionnaire, je veux supprimer une demande en statut brouillon, afin d'annuler une saisie erronée. & 3 & 3h \\ \cline{2-4}
-& En tant que système, je veux router automatiquement les produits 101/102/103 vers le dossier d'analyse et les produits 104/105 vers la checklist pré-comité, afin de respecter le circuit d'approbation propre à chaque produit. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux accéder au catalogue des produits de crédit disponibles, afin de choisir le bon produit lors de la création d'une demande. & 2 & 4h \\ \cline{2-4}
-& En tant que gestionnaire, je veux voir le score de risque calculé pour la demande soumise, afin d'avoir une première évaluation du niveau de risque. & 3 & 6h \\ \hline
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 2 : Service de Demande de Crédit}} \\ \hline
+& En tant que gestionnaire front office, je veux créer une demande de crédit en brouillon pour un client. & 1 & 12h \\ \hline
+& En tant que gestionnaire, je veux prendre un instantané des données client au moment de la soumission, afin de conserver une trace immuable des informations utilisées. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux soumettre la demande de crédit, afin de déclencher automatiquement son acheminement vers le bon service selon le produit choisi. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux modifier une demande en statut brouillon. & 2 & 5h \\ \hline
+& En tant que gestionnaire, je veux consulter la liste de toutes les demandes. & 2 & 6h \\ \hline
+& En tant que gestionnaire, je veux supprimer une demande en statut brouillon. & 3 & 3h \\ \hline
+& En tant que système, je veux router automatiquement les produits 101/102/103 vers le dossier d'analyse et les produits 104/105 vers la checklist pré-comité. & 1 & 8h \\ \hline
 
 % -------- Sprint 3 --------
-\multirow{11}{3cm}{\textbf{Sprint 3 : Service d'Analyse}}
-& En tant qu'analyste de crédit, je veux accéder au dossier d'analyse en 7 étapes associé à une demande soumise, afin de conduire l'instruction du dossier de manière structurée. & 1 & 10h \\ \cline{2-4}
-& En tant qu'analyste, je veux renseigner l'étape 1 (visite client) avec la date de visite, le lieu et les observations terrain, afin de documenter le contact avec le client. & 1 & 8h \\ \cline{2-4}
-& En tant qu'analyste, je veux renseigner l'étape 2 (objet du crédit) avec le type d'actif et la finalité du financement, afin de qualifier l'investissement. & 1 & 6h \\ \cline{2-4}
-& En tant qu'analyste, je veux évaluer le risque client à l'étape 3 (incidents bancaires, litiges, restrictions), afin d'identifier les signaux d'alerte. & 1 & 8h \\ \cline{2-4}
-& En tant qu'analyste, je veux évaluer le risque commercial à l'étape 4 (marché, concurrence, environnement), afin d'apprécier la viabilité économique du projet. & 2 & 8h \\ \cline{2-4}
-& En tant qu'analyste, je veux analyser les états financiers (bilan, compte de résultat) à l'étape 5 via extraction OCR automatique, afin d'accélérer la saisie des données financières. & 1 & 16h \\ \cline{2-4}
-& En tant qu'analyste, je veux évaluer les garanties proposées à l'étape 6 (valeur, type, rang), afin de quantifier la couverture du risque. & 2 & 8h \\ \cline{2-4}
-& En tant qu'analyste, je veux rédiger la proposition finale à l'étape 7 avec la recommandation et les conditions suggérées, afin de soumettre un avis motivé au comité. & 1 & 8h \\ \cline{2-4}
-& En tant qu'analyste, je veux sauvegarder chaque étape en mode brouillon ou la confirmer définitivement, afin de pouvoir reprendre le travail en plusieurs sessions. & 2 & 6h \\ \cline{2-4}
-& En tant qu'analyste, je veux voir la recommandation IA (APPROUVER/REJETER/RÉVISER) générée après confirmation de l'étape 7, afin d'obtenir un avis complémentaire non contraignant. & 2 & 10h \\ \cline{2-4}
-& En tant qu'administrateur, je veux gérer les règles d'affichage des étapes d'analyse (actif/inactif, version), afin d'adapter le formulaire aux évolutions réglementaires. & 3 & 6h \\ \hline
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 3 : Service d'Analyse}} \\ \hline
+& En tant qu'analyste de crédit, je veux accéder au dossier d'analyse en 7 étapes associé à une demande soumise. & 1 & 10h \\ \hline
+& En tant qu'analyste, je veux renseigner l'étape 1 (visite client) avec la date de visite, le lieu et les observations terrain. & 1 & 8h \\ \hline
+& En tant qu'analyste, je veux renseigner l'étape 2 (objet du crédit) avec le type d'actif et la finalité du financement. & 1 & 6h \\ \hline
+& En tant qu'analyste, je veux évaluer le risque client à l'étape 3, afin d'identifier les signaux d'alerte. & 1 & 8h \\ \hline
+& En tant qu'analyste, je veux évaluer le risque commercial à l'étape 4, afin d'apprécier la viabilité économique du projet. & 2 & 8h \\ \hline
+& En tant qu'analyste, je veux analyser les états financiers à l'étape 5 via extraction OCR automatique. & 1 & 16h \\ \hline
+& En tant qu'analyste, je veux évaluer les garanties proposées à l'étape 6, afin de quantifier la couverture du risque. & 2 & 8h \\ \hline
+& En tant qu'analyste, je veux rédiger la proposition finale à l'étape 7 avec la recommandation et les conditions suggérées. & 1 & 8h \\ \hline
+& En tant qu'administrateur, je veux gérer les règles d'affichage des étapes d'analyse (actif/inactif, version). & 3 & 6h \\ \hline
 
 % -------- Sprint 4 --------
-\multirow{7}{3cm}{\textbf{Sprint 4 : Service Checklist}}
-& En tant que gestionnaire, je veux générer automatiquement la checklist associée à une demande de crédit, afin de disposer d'une liste structurée des documents et validations requis. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux consulter et cocher les éléments de la checklist pré-comité section par section, afin de m'assurer que le dossier est complet avant présentation. & 1 & 10h \\ \cline{2-4}
-& En tant que gestionnaire, je veux valider les éléments de la checklist de décaissement (documents signés, conditions levées), afin de confirmer que toutes les conditions préalables sont remplies. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux gérer les entrées de la checklist de garanties (type, valeur, statut de validation), afin de vérifier la conformité des sûretés. & 2 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux valider les sections de la checklist SFO et contrôle, afin de respecter les procédures internes de vérification. & 2 & 6h \\ \cline{2-4}
-& En tant que système, je veux déclencher une recommandation IA après la validation d'une section de checklist, afin d'alimenter en continu l'analyse assistée. & 3 & 6h \\ \cline{2-4}
-& En tant que gestionnaire, je veux régénérer (rafraîchir) la checklist d'une demande, afin de réinitialiser les éléments en cas de modification du dossier. & 3 & 4h \\ \hline
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 4 : Service Checklist}} \\ \hline
+& En tant que gestionnaire, je veux générer automatiquement la checklist associée à une demande de crédit. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux consulter et cocher les éléments de la checklist pré-comité section par section. & 1 & 10h \\ \hline
+& En tant que gestionnaire, je veux valider les éléments de la checklist de décaissement (documents signés, conditions levées). & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux valider les sections de la checklist SFO et contrôle, afin de respecter les procédures internes de vérification. & 2 & 6h \\ \hline
+& En tant que gestionnaire, je veux régénérer la checklist d'une demande, afin de réinitialiser les éléments en cas de modification du dossier. & 3 & 4h \\ \hline
 
 % -------- Sprint 5 --------
-\multirow{8}{3cm}{\textbf{Sprint 5 : Service d'Analyse des Risques}}
-& En tant qu'analyste risque (\texttt{CRO}/\texttt{RISK\_ANALYST}), je veux créer un formulaire CRA (Analyse du Risque de Crédit) pour une demande, afin de formaliser l'évaluation du risque de manière indépendante. & 1 & 10h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux renseigner les éléments de checklist du formulaire CRA par section, afin de valider la conformité documentaire et procédurale. & 1 & 8h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux répondre aux questions d'assurance qualité (Q\&A) du formulaire CRA, afin de documenter les vérifications effectuées. & 1 & 8h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux saisir des opinions de risque par thème (avec couleur et note), afin d'émettre une appréciation qualitative structurée sur chaque dimension du risque. & 1 & 10h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux faire progresser le statut du formulaire CRA (\texttt{BROUILLON} $\rightarrow$ \texttt{EN\_RÉVISION} $\rightarrow$ \texttt{EN\_ATTENTE\_CRO} $\rightarrow$ \texttt{VALIDÉ} $\rightarrow$ \texttt{ENVOYÉ\_AU\_COMITÉ}), afin de piloter l'avancement du processus d'évaluation. & 2 & 6h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux consulter la piste d'audit du formulaire CRA (qui a fait quoi et quand), afin d'assurer la traçabilité des actions. & 2 & 6h \\ \cline{2-4}
-& En tant que système, je veux déclencher une recommandation IA après la soumission d'une opinion de risque, afin d'enrichir l'évaluation par un avis algorithmique. & 3 & 6h \\ \cline{2-4}
-& En tant qu'analyste risque, je veux accéder aux métadonnées de référence du formulaire CRA (sections, thèmes d'opinion, types de Q\&A), afin de bénéficier d'un formulaire normalisé. & 2 & 4h \\ \hline
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 5 : Service d'Analyse des Risques}} \\ \hline
+& En tant qu'analyste risque, je veux créer un formulaire CRA pour une demande, afin de formaliser l'évaluation du risque. & 1 & 10h \\ \hline
+& En tant qu'analyste risque, je veux renseigner les éléments de checklist du formulaire CRA par section. & 1 & 8h \\ \hline
+& En tant qu'analyste risque, je veux répondre aux questions d'assurance qualité (Q\&A) du formulaire CRA. & 1 & 8h \\ \hline
+& En tant qu'analyste risque, je veux saisir des opinions de risque par thème (avec couleur et note). & 1 & 10h \\ \hline
+& En tant qu'analyste risque, je veux consulter la piste d'audit du formulaire CRA (qui a fait quoi et quand). & 2 & 6h \\ \hline
 
 % -------- Sprint 6 --------
-\multirow{9}{3cm}{\textbf{Sprint 6 : Services du comité de crédit et de décaissement}}
-& En tant que décideur (\texttt{BRANCH\_DM}/\texttt{HEAD\_OFFICE\_DM}), je veux accéder au dossier du comité de crédit pour une demande, afin de préparer la session de décision. & 1 & 8h \\ \cline{2-4}
-& En tant que décideur, je veux enregistrer la décision du comité (APPROUVÉ, REJETÉ, CONDITIONNEL) avec le montant et la durée approuvés, afin de formaliser l'issue de la délibération. & 1 & 10h \\ \cline{2-4}
-& En tant que décideur, je veux saisir les conditions d'approbation et les observations du comité, afin de préciser les engagements attendus du client. & 1 & 8h \\ \cline{2-4}
-& En tant que décideur, je veux enregistrer une dérogation (motif, commentaire, valideur) lorsque la décision déroge aux politiques standards, afin d'assurer la traçabilité des exceptions. & 2 & 8h \\ \cline{2-4}
-& En tant que gestionnaire du comité, je veux renseigner le formulaire de préparation (nom du rapporteur, nom du décideur), afin d'organiser la présentation du dossier. & 2 & 5h \\ \cline{2-4}
-& En tant que système, je veux déclencher une recommandation IA à chaque étape clé du comité (décision, préparation, dérogation), afin d'assister le décideur par un avis objectif. & 2 & 8h \\ \cline{2-4}
-& En tant que gestionnaire \texttt{FRONT\_OFFICE}, je veux créer le dossier de décaissement pour une demande approuvée, afin d'initier la mise en place du crédit. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux enregistrer les informations de décaissement (montant, date, référence Amplitude), afin de tracer la mise à disposition des fonds. & 1 & 8h \\ \cline{2-4}
-& En tant que gestionnaire, je veux confirmer le décaissement effectif, afin de clôturer le cycle d'octroi et d'incrémenter le cycle crédit du client. & 1 & 6h \\ \hline
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 6 : Services du comité de crédit et de décaissement}} \\ \hline
+& En tant que décideur, je veux accéder au dossier du comité de crédit pour une demande, afin de préparer la session de décision. & 1 & 8h \\ \hline
+& En tant que décideur, je veux enregistrer la décision du comité (APPROUVÉ, REJETÉ) avec le montant et la durée approuvés. & 1 & 10h \\ \hline
+& En tant que décideur, je veux saisir les conditions d'approbation et les observations du comité. & 1 & 8h \\ \hline
+& En tant que gestionnaire du comité, je veux renseigner le formulaire de préparation (nom du rapporteur, nom du décideur). & 2 & 5h \\ \hline
+& En tant que gestionnaire front office, je veux créer le dossier de décaissement pour une demande approuvée. & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux enregistrer les informations de décaissement (montant, date, référence Amplitude). & 1 & 8h \\ \hline
+& En tant que gestionnaire, je veux confirmer le décaissement effectif, afin de clôturer le cycle d'octroi. & 1 & 6h \\ \hline
 
 \caption{Backlog de Produit}
 \label{tab:backlog}
@@ -373,5 +355,315 @@ du produit final. Le tableau~\ref{tab:sprints} présente la planification des sp
 \caption{Planification des sprints}
 \label{tab:sprints}
 \end{longtable}
+
+\section{Analyse globale du projet}
+
+Une fois la planification du projet établie, nous procédons à la modélisation du projet
+à travers des diagrammes qui illustrent les différentes fonctionnalités de l'application.
+
+\subsection{Diagramme de cas d'utilisation général}
+
+Le diagramme de cas d'utilisation global représente les interactions entre les différents
+acteurs de la plateforme CrediWise et l'ensemble des fonctionnalités qu'elle expose.
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation SuperAdmin}
+
+Le diagramme de cas d'utilisation SuperAdmin (Figure~\ref{fig:uc_superadmin}) présente les
+fonctionnalités accessibles à l'administrateur système. Il couvre la gestion des agences,
+des gestionnaires, des clients, des demandes de crédit, des dossiers d'analyse, de l'analyse
+de risque, du comité de crédit, du décaissement et des recommandations IA.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/SuperAdmin.png}
+    \caption{Diagramme de cas d'utilisation — SuperAdmin}
+    \label{fig:uc_superadmin}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation TechUser}
+
+Le diagramme de cas d'utilisation TechUser (Figure~\ref{fig:uc_techuser}) présente les
+fonctionnalités accessibles à l'utilisateur technique. Il inclut la gestion des gestionnaires
+ainsi que la consultation des agences, des clients, des demandes de crédit, des dossiers
+d'analyse, du comité de crédit et du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/TechUser.png}
+    \caption{Diagramme de cas d'utilisation — TechUser}
+    \label{fig:uc_techuser}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation FrontOffice}
+
+Le diagramme de cas d'utilisation FrontOffice (Figure~\ref{fig:uc_frontoffice}) présente les
+fonctionnalités accessibles au chargé de clientèle. Il inclut la gestion des clients, la
+création des demandes de crédit, la gestion des dossiers d'analyse, le déverrouillage du CRA,
+ainsi que le suivi du comité de crédit et du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/FrontOffice.png}
+    \caption{Diagramme de cas d'utilisation — FrontOffice}
+    \label{fig:uc_frontoffice}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation CRO}
+
+Le diagramme de cas d'utilisation CRO (Figure~\ref{fig:uc_cro}) présente les fonctionnalités
+accessibles au chargé des risques de crédit. Il inclut la gestion des demandes de crédit,
+des dossiers d'analyse, de l'analyse de risque CRA, du comité de crédit et du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/CRO.png}
+    \caption{Diagramme de cas d'utilisation — CRO}
+    \label{fig:uc_cro}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation BranchDM}
+
+Le diagramme de cas d'utilisation BranchDM (Figure~\ref{fig:uc_branchdm}) présente les
+fonctionnalités accessibles au décideur agence. Il inclut la gestion des demandes de crédit,
+la validation des dossiers d'analyse, la gestion du CRA, la prise de décision au comité de
+crédit et le suivi du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/BranchDM.png}
+    \caption{Diagramme de cas d'utilisation — BranchDM}
+    \label{fig:uc_branchdm}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation HeadOfficeDM}
+
+Le diagramme de cas d'utilisation HeadOfficeDM (Figure~\ref{fig:uc_headofficedm}) présente
+les fonctionnalités accessibles au décideur de la direction générale. Il inclut la supervision
+des demandes de crédit, des dossiers d'analyse, du CRA, la validation finale au comité de
+crédit et le contrôle du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/HeadOfficeDM.png}
+    \caption{Diagramme de cas d'utilisation — HeadOfficeDM}
+    \label{fig:uc_headofficedm}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation RiskAnalyst}
+
+Le diagramme de cas d'utilisation RiskAnalyst (Figure~\ref{fig:uc_riskanalyst}) présente les
+fonctionnalités accessibles à l'analyste risque. Il inclut la consultation des demandes de
+crédit et des dossiers d'analyse, la gestion complète des formulaires CRA, ainsi que la
+participation au comité de crédit et le suivi du décaissement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/RiskAnalyst.png}
+    \caption{Diagramme de cas d'utilisation — RiskAnalyst}
+    \label{fig:uc_riskanalyst}
+\end{figure}
+
+\subsubsection*{\ding{226}~Diagramme de cas d'utilisation ReadOnly}
+
+Le diagramme de cas d'utilisation ReadOnly (Figure~\ref{fig:uc_readonly}) présente les
+fonctionnalités accessibles aux utilisateurs en lecture seule. Il se limite à la consultation
+des clients, des demandes de crédit, des dossiers d'analyse, du comité de crédit et du
+décaissement, sans aucune action d'écriture.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/ReadOnly.png}
+    \caption{Diagramme de cas d'utilisation — ReadOnly}
+    \label{fig:uc_readonly}
+\end{figure}
+
+\subsection{Diagramme de classes d'analyse}
+
+Le diagramme de classes offre une vue détaillée de la conception structurelle de la plateforme
+CrediWise. Il définit les relations entre les différentes entités du domaine métier, leurs
+attributs et leurs associations, servant de fondation à l'implémentation du système.
+
+\clearpage
+\begin{landscape}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{img/DiagrammeClassesGlobal.png}
+    \caption{Diagramme de classes global — CrediWise}
+    \label{fig:classes_global}
+\end{figure}
+\end{landscape}
+\clearpage
+
+\section{Architecture du système}
+
+\subsection{Architecture physique}
+
+L'architecture physique met en évidence les différents composants matériels supportant
+l'application. L'architecture repose sur les composants suivants :
+
+\begin{itemize}
+
+    \item[\ding{226}] \textbf{Frontend :} L'application React~19 est développée avec Vite et
+    TypeScript. Elle communique avec les services backend via des API REST, intègre Keycloak
+    (keycloak-js) pour l'authentification et utilise des gardes de routes (react-router-dom)
+    pour le contrôle d'accès. Elle embarque également une instrumentation OpenTelemetry pour
+    la traçabilité distribuée de bout en bout.
+
+    \item[\ding{226}] \textbf{Serveurs Backend (Microservices) :} Dix services indépendants
+    développés avec Quarkus (Java) s'exécutent sur des ports distincts, chacun exposant une
+    API REST documentée via Swagger UI. Quatre d'entre eux exposent également des points
+    d'accès gRPC pour les échanges inter-services :
+    \begin{itemize}
+        \item[--] Service Gestionnaire : REST 8080, gRPC 9000 ;
+        \item[--] Service Client : REST 8082, gRPC 9001 ;
+        \item[--] Service Nouvelle Demande : REST 8083, gRPC 9002 ;
+        \item[--] Service Analyse : REST 8084, gRPC 9003 ;
+        \item[--] Service Checklist : REST 8085 ;
+        \item[--] Service Risque Analyse : REST 8086, gRPC 9005 ;
+        \item[--] Service Comité Crédit : REST 8087 ;
+        \item[--] Service Décaissement : REST 8088 ;
+        \item[--] Service IA Recommendation : REST 8089, gRPC 9008 ;
+        \item[--] Service OCR : REST 8000 (Python/FastAPI).
+    \end{itemize}
+
+    \item[\ding{226}] \textbf{Serveurs de Bases de Données :} Chaque microservice maintient
+    sa propre instance PostgreSQL dédiée selon le patron \textit{Database per Service} :
+    \begin{itemize}
+        \item[--] \texttt{gestionnaire\_db} (port 5432)
+        \item[--] \texttt{client\_db} (port 5433)
+        \item[--] \texttt{nouvelle\_demande\_db} (port 5434)
+        \item[--] \texttt{analyse\_db} (port 5435)
+        \item[--] \texttt{check\_list\_db} (port 5437)
+        \item[--] \texttt{risque\_analyse\_db} (port 5438)
+        \item[--] \texttt{comite\_credit\_db} (port 5439)
+        \item[--] \texttt{decaissement\_db} (port 5440)
+        \item[--] \texttt{ai\_recommendation\_db} (port 5441)
+    \end{itemize}
+
+    \item[\ding{226}] \textbf{Fournisseur d'Identité :} Keycloak~26 est déployé sur le
+    port~8180 avec sa propre base de données PostgreSQL dédiée (port~5436). Il importe le
+    realm CrediWise ainsi que le thème de connexion personnalisé.
+
+    \item[\ding{226}] \textbf{Observabilité :} SigNoz est déployé comme plateforme de
+    télémétrie (traces, métriques, logs). Un collecteur OpenTelemetry centralise les signaux
+    de tous les microservices et du frontend.
+
+    \item[\ding{226}] \textbf{Passerelle :} Nginx est configuré comme reverse proxy et
+    passerelle API pour les scénarios entièrement conteneurisés, incluant le TLS, le CORS,
+    les en-têtes de sécurité et les règles de routage vers l'ensemble des dix microservices.
+
+\end{itemize}
+
+\subsection{Architecture logique}
+
+\section{Environnement de développement}
+
+\subsection{Environnement logiciel}
+
+L'environnement logiciel de CrediWise regroupe l'ensemble des technologies, frameworks et outils
+utilisés pour le développement, le déploiement et l'exploitation de la plateforme. Le
+tableau~\ref{tab:env_logiciel} présente ces outils ainsi que leur rôle dans le projet.
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10.5cm}|}
+\hline
+\textbf{Outil} & \textbf{Description} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Outil} & \textbf{Description} \\
+\hline
+\endhead
+\endlastfoot
+
+Quarkus~\cite{QuarkusIO}
+& Framework Java cloud-native pour les microservices, à démarrage rapide et faible empreinte mémoire. \\ \hline
+
+React~\cite{ReactDev}
+& Bibliothèque JavaScript (Meta) utilisée avec Vite et TypeScript pour le frontend SPA de CrediWise. \\ \hline
+
+PostgreSQL~\cite{PostgreSQLOrg}
+& SGBD relationnel open-source robuste ; chaque microservice dispose de sa propre instance dédiée. \\ \hline
+
+Docker / Docker Compose~\cite{DockerDocs}
+& Plateforme de conteneurisation assurant des environnements de déploiement reproductibles. \\ \hline
+
+Nginx~\cite{NginxOrg}
+& Reverse proxy et passerelle API gérant le TLS, le CORS et le routage vers les microservices. \\ \hline
+
+
+
+FastAPI~\cite{FastAPIDocs}
+& Framework Python asynchrone exposant l'API REST du service OCR pour l'extraction de données PDF. \\ \hline
+
+Keycloak~\cite{KeycloakOrg}
+& Plateforme IAM open-source centralisant l'authentification, les sessions et la gestion des rôles. \\ \hline
+
+Azure Pipelines~\cite{AzurePipelines}
+& Pipeline CI/CD automatisant la compilation Maven, la construction et la publication des images Docker. \\ \hline
+
+SigNOZ~\cite{SigNOZIO}
+& Plateforme d'observabilité open-source pour les traces, métriques et logs des microservices. \\ \hline
+
+OpenTelemetry~\cite{OpenTelemetryIO}
+& SDK d'instrumentation collectant et exportant les signaux télémétriques vers SigNOZ via OTLP. \\ \hline
+
+Git~\cite{GitSCM}
+& Système de contrôle de version distribué pour la gestion collaborative du code source. \\ \hline
+
+IntelliJ IDEA~\cite{JetBrainsIDEA}
+& IDE Java/Quarkus avec assistance au code avancée pour le développement backend. \\ \hline
+
+Visual Studio Code~\cite{VSCodeDocs}
+& Éditeur extensible utilisé pour le développement frontend React/TypeScript avec intégration Git. \\ \hline
+
+Postman~\cite{PostmanAPI}
+& Client API pour tester et documenter les API REST des microservices CrediWise. \\ \hline
+
+pgAdmin~\cite{pgAdminOrg}
+& Interface web d'administration des instances PostgreSQL des microservices. \\ \hline
+
+Ollama~\cite{OllamaIO}
+& Serveur LLM local permettant d'exécuter des modèles de langage open-source (ex. Llama~3.1)
+comme alternative pour les recommandations IA en environnement hors-ligne. \\ \hline
+
+\caption{Environnement logiciel}
+\label{tab:env_logiciel}
+\end{longtable}
+
+\subsection{Technologies utilisées}
+
+\begin{itemize}
+
+    \item[\ding{226}] \textbf{Quarkus}~\cite{QuarkusIO} a été retenu comme framework Java principal
+    pour l'ensemble des services backend en raison de son architecture cloud-native : il réduit
+    significativement l'empreinte mémoire et le temps de démarrage de chaque service, un avantage
+    déterminant lorsque dix microservices s'exécutent simultanément dans des conteneurs. Il unifie
+    dans un seul écosystème cohérent les besoins REST, gRPC, ORM, validation, sécurité OIDC et
+    télémétrie, évitant la dispersion entre plusieurs frameworks indépendants.
+
+    \item[\ding{226}] \textbf{React}~\cite{ReactDev} associé à Vite et TypeScript a été choisi côté
+    client pour produire une SPA interactive et maintenable, le typage statique sécurisant les
+    échanges de données avec les API backend.
+
+    \item[\ding{226}] \textbf{Keycloak}~\cite{KeycloakOrg} centralise la gestion des identités et
+    libère chaque microservice de toute logique d'authentification propre, assurant une gestion
+    unifiée des rôles et des sessions.
+
+    \item[\ding{226}] \textbf{PostgreSQL}~\cite{PostgreSQLOrg} répond au patron \textit{Database per
+    Service} en offrant un moteur relationnel fiable et éprouvé pour chacune des bases de données
+    isolées des microservices.
+
+    \item[\ding{226}] \textbf{Docker} et \textbf{Docker Compose}~\cite{DockerDocs} garantissent des
+    environnements de déploiement reproductibles du poste de développement jusqu'à la production.
+
+    \item[\ding{226}] \textbf{Azure Pipelines}~\cite{AzurePipelines} automatise l'intégration continue
+    en ne recompilant que les services modifiés à chaque commit, réduisant les temps de build et
+    fiabilisant les livraisons.
+
+    \item[\ding{226}] \textbf{SigNOZ}~\cite{SigNOZIO} et \textbf{OpenTelemetry}~\cite{OpenTelemetryIO}
+    ont été intégrés pour assurer une observabilité complète de la plateforme, permettant de corréler
+    traces, métriques et logs à travers l'ensemble des services.
+
+\end{itemize}
 
 \section*{Conclusion}
