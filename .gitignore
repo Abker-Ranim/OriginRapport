@@ -57,3 +57,15 @@
 *.ps
 *.eps
 .main.aux
+.fbd_latexmk
+.fdb_latexmk
+.main.bbl
+.main.blg
+.main.fdb_latexmk
+.main.fls
+.main.log
+.main.run.xml
+.main.synctex.gz    
+.main.toc
+.main.lot
+.main.lof
