@@ -18,39 +18,45 @@ et propagés au frontend et au backend via un mécanisme d'autorisation basé su
 Les acteurs suivants ont été identifiés :
 
 \begin{itemize}
+
     \item[\ding{226}] \textbf{Super Administrateur :} dispose du niveau d'accès le plus
-    élevé. Il gère les agences, les comptes gestionnaires, les rôles, les règles d'affichage
-    ainsi que les données administratives du système.
+    élevé de la plateforme. Il est responsable de la gestion des agences, des comptes
+    gestionnaires, des rôles utilisateurs, des règles d'affichage ainsi que de l'ensemble
+    des données administratives du système.
 
-    \item[\ding{226}] \textbf{Utilisateur technique :} assure des tâches d'administration
-    technique, principalement liées à la gestion des agences et des comptes gestionnaires,
-    sans intervenir dans les processus métier de décision.
+    \item[\ding{226}] \textbf{Utilisateur Technique :} assure des tâches d'administration
+    technique relatives à la gestion des agences et des comptes gestionnaires, sans
+    intervenir dans les processus métier de décision.
 
-    \item[\ding{226}] \textbf{Chargé de relation client (CRO) :} consulte les dossiers clients, suit
-    les demandes de crédit et complète les dossiers d'analyse lorsqu'ils lui sont affectés.
+    \item[\ding{226}] \textbf{Agent Front Office :} constitue le premier point de contact
+    avec le client. Il est chargé de la création des fiches clients, de la préparation des
+    demandes de crédit et de leur soumission pour traitement.
 
-    \item[\ding{226}] \textbf{Agent front office :} assure l'accueil des clients, crée
-    les fiches clients, prépare les demandes de crédit et soumet les brouillons pour
-    traitement.
+    \item[\ding{226}] \textbf{Chargé de Relation Client :} assure le suivi et l'instruction
+    des dossiers de crédit qui lui sont affectés. Il complète les étapes d'analyse et assure
+    la coordination entre les différentes phases du processus.
 
-    \item[\ding{226}] \textbf{Décideur agence :} examine les demandes de crédit et les
-    dossiers d'analyse au niveau de l'agence. Il participe aux décisions et aux transitions
-    de statut selon les règles d'autorisation.
+    \item[\ding{226}] \textbf{Décideur Agence :} examine les dossiers de crédit au niveau
+    de l'agence et participe aux décisions ainsi qu'aux transitions de statut conformément
+    aux règles d'autorisation définies par l'institution.
 
-    \item[\ding{226}] \textbf{Décideur siège :} consulte les dossiers nécessitant
-    une validation centrale et participe au processus de décision pour les demandes hors
-    périmètre agence.
+    \item[\ding{226}] \textbf{Décideur Siège :} intervient pour les dossiers nécessitant
+    une validation centrale, notamment lorsque leur montant ou leur niveau de risque dépasse
+    le périmètre de décision de l'agence.
 
-    \item[\ding{226}] \textbf{Analyste risque :} analyse les demandes de crédit, les
-    données d'évaluation et les résultats de scoring afin de contribuer à l'analyse des
-    risques.
+    \item[\ding{226}] \textbf{Analyste Risque :} est responsable de l'évaluation de la
+    solvabilité des demandeurs. Il analyse les données financières, les résultats de scoring
+    et contribue à l'élaboration des rapports d'analyse des risques.
 
-    \item[\ding{226}] \textbf{Auditeur :} dispose d'un accès en lecture seule, utilisé
-    pour les activités d'audit, de contrôle et de vérification.
+    \item[\ding{226}] \textbf{Auditeur :} dispose d'un accès en lecture seule à l'ensemble
+    de la plateforme. Ce rôle permet la réalisation d'activités d'audit, de contrôle interne
+    et de vérification de conformité, sans possibilité de modification des données.
 
-    \item[\ding{226}] \textbf{Fournisseur d'identité (Keycloak) :} acteur système externe chargé de
-    l'authentification, de la gestion des sessions et de l'émission des jetons. Il fournit
-    également les rôles consommés par le frontend et le backend.
+    \item[\ding{226}] \textbf{Keycloak (Fournisseur d'identité) :} acteur système
+    responsable de l'authentification des utilisateurs, de la gestion des sessions et de
+    l'émission des jetons d'accès. Il centralise la gestion des rôles utilisés par le
+    frontend et les microservices backend.
+
 \end{itemize}
 
 \section{Spécification des besoins}
@@ -62,166 +68,99 @@ constituant une étape essentielle dans la définition de l'architecture du proj
 
 \subsubsection*{\ding{226}~Authentification et sécurité}
 
-\begin{itemize}
-    \item Le système authentifie les utilisateurs via Keycloak et récupère les jetons
-    d'accès à l'aide de l'adaptateur keycloak-js.
-    \item Le frontend protège les routes en fonction des rôles de l'utilisateur, tandis
-    que le backend applique les autorisations via l'annotation \textit{@RolesAllowed}.
-    \item Les jetons d'accès sont attachés aux requêtes API internes et renouvelés
-    automatiquement avant expiration afin d'assurer la continuité des sessions.
-    \item La déconnexion est gérée par Keycloak, garantissant la fermeture complète de
-    la session au niveau du fournisseur d'identité.
-\end{itemize}
+Le système assure l'authentification via Keycloak, qui gère l'émission des jetons JWT et la
+gestion des sessions. Les accès sont protégés côté frontend par un RoleGuard et côté backend
+par des contrôles d'autorisation basés sur \texttt{@RolesAllowed}.
 
 \subsubsection*{\ding{226}~Gestion des utilisateurs et des agences}
 
-\begin{itemize}
-    \item Le service Manager permet de créer, modifier, désactiver et consulter les
-    comptes gestionnaires.
-    \item Le système prend en charge la gestion complète des agences (création, mise à
-    jour, consultation et activation/désactivation).
-    \item Les gestionnaires peuvent être associés à des agences, avec une cohérence
-    assurée entre les rôles Keycloak et les données applicatives.
-    \item Chaque utilisateur peut consulter et mettre à jour son profil selon les droits
-    définis par l'API.
-\end{itemize}
+Le système permet la création, la mise à jour et la désactivation des comptes utilisateurs
+et des agences. La cohérence avec Keycloak est assurée via un identifiant dédié, et chaque
+utilisateur peut gérer son profil selon ses droits.
 
 \subsubsection*{\ding{226}~Gestion des clients}
 
-\begin{itemize}
-    \item Le service Customer gère les fiches clients (personnes physiques et morales).
-    \item Les données incluent l'identité, les coordonnées, l'agence, le type de compte,
-    le segment, le secteur d'activité, le scoring et le cycle client.
-    \item Le système permet la recherche de clients par identifiant ou coordonnées, ainsi
-    que la consultation paginée des listes.
-    \item Les données de référence (segments, secteurs, activités, types de compte, etc.)
-    sont exposées pour garantir une saisie structurée.
-\end{itemize}
+Le système centralise les informations des clients physiques et moraux, incluant les données
+d'identité, de contact et de segmentation. Il permet la recherche et la consultation paginée
+des clients.
 
 \subsubsection*{\ding{226}~Gestion des demandes de crédit}
 
-\begin{itemize}
-    \item Le service Credit Request permet la création et la mise à jour des demandes de
-    crédit au statut brouillon.
-    \item Une demande inclut les informations client, le montant, la durée, le produit,
-    les garanties, les garants, la capacité de remboursement et les indicateurs de risque.
-    \item Une fois soumise, la demande est routée selon le produit : les produits 101,
-    102 et 103 sont dirigés vers l'analyse, les autres vers la checklist pré-comité.
-    \item Les acteurs autorisés peuvent mettre à jour le statut dans le cadre du cycle
-    de vie du crédit.
-    \item Une version PDF de la demande peut être générée pour archivage et documentation.
-\end{itemize}
+Le système gère le cycle de vie des demandes de crédit, depuis leur création jusqu'à leur
+orientation vers les différents circuits de traitement, selon des règles métiers définies.
 
 \subsubsection*{\ding{226}~Analyse du crédit et scoring}
 
-\begin{itemize}
-    \item Le service Analysis crée un dossier d'analyse pour chaque demande éligible.
-    \item Le processus suit plusieurs étapes : informations client, objet du crédit,
-    risques client, commerciaux et financiers, et données complémentaires.
-    \item Les opérations de sauvegarde et de validation sont limitées aux profils autorisés.
-    \item Un module de scoring calcule et enregistre le score de crédit associé à la demande.
-    \item Les règles d'affichage sont versionnées afin de garantir la traçabilité des décisions.
-\end{itemize}
+Le système réalise une analyse structurée des dossiers de crédit et calcule un score basé
+sur plusieurs critères financiers, commerciaux et de risque, avec une traçabilité des règles
+utilisées.
 
 \subsubsection*{\ding{226}~Liste de contrôle pré-comité}
 
-\begin{itemize}
-    \item Le service Checklist consolide les documents et vérifications nécessaires avant
-    le passage en comité.
-    \item La checklist est générée ou mise à jour à partir de la demande et enrichie via
-    le service Customer.
-    \item Elle couvre les documents, garanties, archivage, préparation au décaissement
-    et contrôles front office/back office.
-\end{itemize}
+Le système génère une checklist des documents et vérifications nécessaires avant le passage
+en comité pour les dossiers concernés.
 
 \subsubsection*{\ding{226}~Analyse du risque crédit}
 
-\begin{itemize}
-    \item Le service Risk Analysis gère le formulaire d'analyse du risque crédit (CRA).
-    \item Le formulaire suit plusieurs statuts contrôlés : brouillon, en révision, validé,
-    envoyé au comité, ou archivé.
-    \item Les analystes peuvent compléter les sections d'avis et de questions-réponses.
-    \item Un module d'audit enregistre l'historique des modifications.
-\end{itemize}
+Le système permet la saisie et la validation de l'analyse du risque via un formulaire
+structuré, incluant la conformité, les réponses aux questions et l'avis de l'expert.
 
-\subsubsection*{\ding{226}~Décision du comité}
+\subsubsection*{\ding{226}~Décision du comité de crédit}
 
-\begin{itemize}
-    \item Le service Credit Committee enregistre et expose les décisions du comité de crédit.
-    \item Les décisions sont initialisées à partir des services amont et mises à jour après
-    validation.
-    \item Elles influencent directement le cycle de vie de la demande (approbation, rejet
-    ou décaissement).
-\end{itemize}
+Le système enregistre les décisions du comité ainsi que les éléments associés au dossier.
+La validation du comité entraîne la mise à jour du statut de la demande.
 
 \subsubsection*{\ding{226}~Décaissement}
 
-\begin{itemize}
-    \item Le service Disbursement enregistre les informations de décaissement pour les
-    demandes approuvées.
-    \item L'enregistrement est basé sur l'instantané de la demande de crédit.
-    \item Une fois validé, le statut passe à « décaissé », et le compteur client est mis
-    à jour via gRPC.
-\end{itemize}
+Le système gère le processus de décaissement des crédits approuvés et met à jour les
+informations client après validation.
+
+\subsubsection*{\ding{226}~Recommandation par intelligence artificielle}
+
+Le système propose des recommandations basées sur l'intelligence artificielle à différentes
+étapes du processus. Ces recommandations sont uniquement consultatives et n'influencent pas
+automatiquement la décision finale.
 
 \subsubsection*{\ding{226}~Auditabilité et traçabilité}
 
-\begin{itemize}
-    \item Chaque service enregistre les métadonnées de création et de mise à jour des entités.
-    \item La sécurité contrôle les accès aux routes API et aux services backend.
-    \item Les utilisateurs en lecture seule peuvent consulter les données sans pouvoir les
-    modifier, garantissant les besoins d'audit et de conformité.
-\end{itemize}
+Le système assure la traçabilité de toutes les opérations via l'enregistrement des
+métadonnées, permettant un suivi et un contrôle des actions réalisées.
 
 \subsection{Besoins non fonctionnels}
 
 \subsubsection*{\ding{226}~Performance}
 
-Le backend est implémenté avec Quarkus, offrant un temps de démarrage rapide et une faible
-consommation mémoire. Les API REST intègrent des mécanismes de pagination et de filtrage
-afin de limiter la taille des réponses. Le frontend, développé avec Vite et React, assure
-une navigation fluide et réactive en réduisant les rechargements de page.
+Le système garantit de bonnes performances avec un temps de réponse moyen des API REST
+inférieur à \textbf{500 ms}. Le backend Quarkus~\cite{QuarkusIO} assure un démarrage rapide
+(inférieur à \textbf{1 seconde}) et une consommation mémoire réduite. La pagination et le
+filtrage optimisent également les échanges de données.
 
 \subsubsection*{\ding{226}~Scalabilité}
 
-L'architecture repose sur une séparation des principaux domaines métier en services
-indépendants : Manager, Customer, Credit Request et Analysis. Cette approche permet à chaque
-service, ainsi qu'à sa base de données associée, d'évoluer et d'être dimensionné
-indépendamment en fonction de la charge.
-
-\subsubsection*{\ding{226}~Fiabilité et disponibilité}
-
-L'infrastructure locale est déployée via Docker Compose, incluant PostgreSQL, Keycloak et
-pgAdmin. La séparation des services et des bases de données limite l'impact des défaillances
-à un domaine spécifique et garantit la reproductibilité des environnements de développement.
+Le système doit être capable de s'adapter à l'augmentation du nombre d'utilisateurs et du
+volume des données. L'architecture adoptée repose sur une séparation des principaux domaines
+métier en services indépendants, permettant à chaque composant d'évoluer et d'être dimensionné
+de manière autonome selon les besoins.
 
 \subsubsection*{\ding{226}~Maintenabilité}
 
-Chaque service backend est structuré comme un projet Maven indépendant avec son propre code,
-sa configuration, ses tests et ses migrations Flyway. Cette organisation réduit le couplage
-entre services et facilite la maintenance ainsi que l'évolution du système.
+Le système doit être facile à maintenir et à faire évoluer. L'organisation du backend en
+services indépendants, disposant chacun de leur propre configuration, tests et mécanismes de
+gestion de base de données, facilite les opérations de maintenance et réduit le couplage entre
+les différents composants.
 
 \subsubsection*{\ding{226}~Conformité}
 
-Le système traite des données personnelles et financières, ce qui impose des exigences
-strictes de traçabilité et de contrôle d'accès. L'utilisation d'instantanés immuables des
-demandes et de métadonnées d'audit garantit la cohérence des données et la conformité aux
-exigences réglementaires.
+Le système doit assurer la gestion conforme des données personnelles et financières. Des
+mécanismes de traçabilité, d'audit et de conservation des informations sont mis en place afin
+de garantir l'intégrité des données et le respect des exigences réglementaires applicables.
 
 \subsubsection*{\ding{226}~Sécurité}
 
-L'authentification est centralisée via Keycloak. Les services backend valident les jetons
-JWT et extraient les rôles configurés pour appliquer les règles d'autorisation. Les contrôles
-d'accès sont appliqués au niveau des API et renforcés au niveau métier lorsque nécessaire.
-Les jetons ne sont pas stockés dans le stockage local du navigateur afin de réduire les
-risques de sécurité.
-
-\subsubsection*{\ding{226}~Ergonomie et expérience utilisateur}
-
-Le frontend est une application monopage (SPA) développée avec React et TypeScript. Il
-propose une navigation basée sur les rôles, une gestion multilingue via i18next, une
-validation des formulaires et un système cohérent de gestion des erreurs afin d'améliorer
-l'expérience utilisateur.
+Le système doit garantir la confidentialité et la protection des données. L'authentification
+et la gestion des identités sont assurées via Keycloak~\cite{KeycloakOrg}, qui centralise la
+gestion des utilisateurs, des rôles et des permissions. Les services backend valident les
+jetons JWT et appliquent des contrôles d'accès afin de protéger les ressources sensibles.
 
 \subsection{Backlog de Produit}
 
@@ -301,6 +240,22 @@ dans le tableau~\ref{tab:backlog} ci-après :
 & En tant que gestionnaire, je veux enregistrer les informations de décaissement (montant, date, référence Amplitude). & 1 & 8h \\ \hline
 & En tant que gestionnaire, je veux confirmer le décaissement effectif, afin de clôturer le cycle d'octroi. & 1 & 6h \\ \hline
 
+% -------- Sprint 7 --------
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 7 : Recommandation par Intelligence Artificielle}} \\ \hline
+& En tant qu'analyste, je veux déclencher une recommandation IA à l'issue d'un dossier d'analyse, afin d'obtenir une aide à la décision automatisée. & 1 & 12h \\ \hline
+& En tant qu'analyste, je veux consulter la recommandation IA (décision, score de confiance, facteurs de risque et conditions), afin d'enrichir mon analyse. & 1 & 8h \\ \hline
+& En tant qu'analyste risque, je veux déclencher une recommandation IA après la validation du formulaire CRA, afin d'obtenir une évaluation actualisée du risque. & 1 & 10h \\ \hline
+
+% -------- Sprint 8 --------
+\multicolumn{4}{|l|}{\cellcolor{gray!20}\textbf{Sprint 8 : Services d'Observabilité}} \\ \hline
+& En tant qu'Admin, je veux instrumenter les neuf microservices Quarkus avec OpenTelemetry, afin de collecter traces, métriques et logs de manière centralisée. & 1 & 12h \\ \hline
+& En tant qu'Admin, je veux instrumenter le frontend React avec OpenTelemetry, afin de tracer les interactions utilisateur et les appels API depuis le navigateur. & 1 & 10h \\ \hline
+& En tant qu'Admin, je veux déployer SigNoz avec ClickHouse comme backend de stockage, afin de visualiser les données d'observabilité en temps réel. & 1 & 10h \\ \hline
+& En tant qu'Admin, je veux activer le traçage distribué bout en bout entre les microservices via la propagation du contexte W3C (traceparent), afin de corréler les appels inter-services. & 1 & 8h \\ \hline
+& En tant qu'Admin, je veux configurer dix tableaux de bord SigNoz couvrant la santé système, la latence, les taux d'erreur et les analyses métier par service. & 1 & 12h \\ \hline
+& En tant qu'Admin, je veux exposer les métriques JVM, HTTP et gRPC via Micrometer pour chaque microservice, afin de surveiller les performances applicatives. & 2 & 6h \\ \hline
+& En tant qu'Admin, je veux activer la journalisation structurée en JSON avec export vers SigNoz via OTLP, afin de centraliser et d'interroger les logs applicatifs. & 2 & 5h \\ \hline
+
 \caption{Backlog de Produit}
 \label{tab:backlog}
 \end{longtable}
@@ -350,7 +305,15 @@ du produit final. Le tableau~\ref{tab:sprints} présente la planification des sp
 
 \multirow{2}{*}{\textbf{6}}
 & Comité de crédit — décision, dérogation et préparation   & 26-05-2025 & 06-06-2025 \\ \cline{2-4}
-& Décaissement, clôture du dossier et recommandation IA    & 09-06-2025 & 16-06-2025 \\ \hline
+& Décaissement, clôture du dossier  .  & 09-06-2025 & 16-06-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{7}}
+& Moteur IA, intégration API et génération de recommandations              & 19-06-2025 & 04-07-2025 \\ \cline{2-4}
+& Versionnement, diff inter-versions et intégration dans le flux décisionnel & 07-07-2025 & 18-07-2025 \\ \hline
+
+\multirow{2}{*}{\textbf{8}}
+& Instrumentation OpenTelemetry des microservices Quarkus et du frontend React & 21-07-2025 & 01-08-2025 \\ \cline{2-4}
+& Déploiement SigNoz/ClickHouse et configuration des tableaux de bord          & 04-08-2025 & 16-08-2025 \\ \hline
 
 \caption{Planification des sprints}
 \label{tab:sprints}
@@ -496,61 +459,7 @@ attributs et leurs associations, servant de fondation à l'implémentation du sy
 
 \subsection{Architecture physique}
 
-L'architecture physique met en évidence les différents composants matériels supportant
-l'application. L'architecture repose sur les composants suivants :
 
-\begin{itemize}
-
-    \item[\ding{226}] \textbf{Frontend :} L'application React~19 est développée avec Vite et
-    TypeScript. Elle communique avec les services backend via des API REST, intègre Keycloak
-    (keycloak-js) pour l'authentification et utilise des gardes de routes (react-router-dom)
-    pour le contrôle d'accès. Elle embarque également une instrumentation OpenTelemetry pour
-    la traçabilité distribuée de bout en bout.
-
-    \item[\ding{226}] \textbf{Serveurs Backend (Microservices) :} Dix services indépendants
-    développés avec Quarkus (Java) s'exécutent sur des ports distincts, chacun exposant une
-    API REST documentée via Swagger UI. Quatre d'entre eux exposent également des points
-    d'accès gRPC pour les échanges inter-services :
-    \begin{itemize}
-        \item[--] Service Gestionnaire : REST 8080, gRPC 9000 ;
-        \item[--] Service Client : REST 8082, gRPC 9001 ;
-        \item[--] Service Nouvelle Demande : REST 8083, gRPC 9002 ;
-        \item[--] Service Analyse : REST 8084, gRPC 9003 ;
-        \item[--] Service Checklist : REST 8085 ;
-        \item[--] Service Risque Analyse : REST 8086, gRPC 9005 ;
-        \item[--] Service Comité Crédit : REST 8087 ;
-        \item[--] Service Décaissement : REST 8088 ;
-        \item[--] Service IA Recommendation : REST 8089, gRPC 9008 ;
-        \item[--] Service OCR : REST 8000 (Python/FastAPI).
-    \end{itemize}
-
-    \item[\ding{226}] \textbf{Serveurs de Bases de Données :} Chaque microservice maintient
-    sa propre instance PostgreSQL dédiée selon le patron \textit{Database per Service} :
-    \begin{itemize}
-        \item[--] \texttt{gestionnaire\_db} (port 5432)
-        \item[--] \texttt{client\_db} (port 5433)
-        \item[--] \texttt{nouvelle\_demande\_db} (port 5434)
-        \item[--] \texttt{analyse\_db} (port 5435)
-        \item[--] \texttt{check\_list\_db} (port 5437)
-        \item[--] \texttt{risque\_analyse\_db} (port 5438)
-        \item[--] \texttt{comite\_credit\_db} (port 5439)
-        \item[--] \texttt{decaissement\_db} (port 5440)
-        \item[--] \texttt{ai\_recommendation\_db} (port 5441)
-    \end{itemize}
-
-    \item[\ding{226}] \textbf{Fournisseur d'Identité :} Keycloak~26 est déployé sur le
-    port~8180 avec sa propre base de données PostgreSQL dédiée (port~5436). Il importe le
-    realm CrediWise ainsi que le thème de connexion personnalisé.
-
-    \item[\ding{226}] \textbf{Observabilité :} SigNoz est déployé comme plateforme de
-    télémétrie (traces, métriques, logs). Un collecteur OpenTelemetry centralise les signaux
-    de tous les microservices et du frontend.
-
-    \item[\ding{226}] \textbf{Passerelle :} Nginx est configuré comme reverse proxy et
-    passerelle API pour les scénarios entièrement conteneurisés, incluant le TLS, le CORS,
-    les en-têtes de sécurité et les règles de routage vers l'ensemble des dix microservices.
-
-\end{itemize}
 
 \subsection{Architecture logique}
 
@@ -558,110 +467,10 @@ l'application. L'architecture repose sur les composants suivants :
 
 \subsection{Environnement logiciel}
 
-L'environnement logiciel de CrediWise regroupe l'ensemble des technologies, frameworks et outils
-utilisés pour le développement, le déploiement et l'exploitation de la plateforme. Le
-tableau~\ref{tab:env_logiciel} présente ces outils ainsi que leur rôle dans le projet.
 
-\begin{longtable}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10.5cm}|}
-\hline
-\textbf{Outil} & \textbf{Description} \\
-\hline
-\endfirsthead
-\hline
-\textbf{Outil} & \textbf{Description} \\
-\hline
-\endhead
-\endlastfoot
-
-Quarkus~\cite{QuarkusIO}
-& Framework Java cloud-native pour les microservices, à démarrage rapide et faible empreinte mémoire. \\ \hline
-
-React~\cite{ReactDev}
-& Bibliothèque JavaScript (Meta) utilisée avec Vite et TypeScript pour le frontend SPA de CrediWise. \\ \hline
-
-PostgreSQL~\cite{PostgreSQLOrg}
-& SGBD relationnel open-source robuste ; chaque microservice dispose de sa propre instance dédiée. \\ \hline
-
-Docker / Docker Compose~\cite{DockerDocs}
-& Plateforme de conteneurisation assurant des environnements de déploiement reproductibles. \\ \hline
-
-Nginx~\cite{NginxOrg}
-& Reverse proxy et passerelle API gérant le TLS, le CORS et le routage vers les microservices. \\ \hline
-
-
-
-FastAPI~\cite{FastAPIDocs}
-& Framework Python asynchrone exposant l'API REST du service OCR pour l'extraction de données PDF. \\ \hline
-
-Keycloak~\cite{KeycloakOrg}
-& Plateforme IAM open-source centralisant l'authentification, les sessions et la gestion des rôles. \\ \hline
-
-Azure Pipelines~\cite{AzurePipelines}
-& Pipeline CI/CD automatisant la compilation Maven, la construction et la publication des images Docker. \\ \hline
-
-SigNOZ~\cite{SigNOZIO}
-& Plateforme d'observabilité open-source pour les traces, métriques et logs des microservices. \\ \hline
-
-OpenTelemetry~\cite{OpenTelemetryIO}
-& SDK d'instrumentation collectant et exportant les signaux télémétriques vers SigNOZ via OTLP. \\ \hline
-
-Git~\cite{GitSCM}
-& Système de contrôle de version distribué pour la gestion collaborative du code source. \\ \hline
-
-IntelliJ IDEA~\cite{JetBrainsIDEA}
-& IDE Java/Quarkus avec assistance au code avancée pour le développement backend. \\ \hline
-
-Visual Studio Code~\cite{VSCodeDocs}
-& Éditeur extensible utilisé pour le développement frontend React/TypeScript avec intégration Git. \\ \hline
-
-Postman~\cite{PostmanAPI}
-& Client API pour tester et documenter les API REST des microservices CrediWise. \\ \hline
-
-pgAdmin~\cite{pgAdminOrg}
-& Interface web d'administration des instances PostgreSQL des microservices. \\ \hline
-
-Ollama~\cite{OllamaIO}
-& Serveur LLM local permettant d'exécuter des modèles de langage open-source (ex. Llama~3.1)
-comme alternative pour les recommandations IA en environnement hors-ligne. \\ \hline
-
-\caption{Environnement logiciel}
-\label{tab:env_logiciel}
-\end{longtable}
 
 \subsection{Technologies utilisées}
 
-\begin{itemize}
 
-    \item[\ding{226}] \textbf{Quarkus}~\cite{QuarkusIO} a été retenu comme framework Java principal
-    pour l'ensemble des services backend en raison de son architecture cloud-native : il réduit
-    significativement l'empreinte mémoire et le temps de démarrage de chaque service, un avantage
-    déterminant lorsque dix microservices s'exécutent simultanément dans des conteneurs. Il unifie
-    dans un seul écosystème cohérent les besoins REST, gRPC, ORM, validation, sécurité OIDC et
-    télémétrie, évitant la dispersion entre plusieurs frameworks indépendants.
-
-    \item[\ding{226}] \textbf{React}~\cite{ReactDev} associé à Vite et TypeScript a été choisi côté
-    client pour produire une SPA interactive et maintenable, le typage statique sécurisant les
-    échanges de données avec les API backend.
-
-    \item[\ding{226}] \textbf{Keycloak}~\cite{KeycloakOrg} centralise la gestion des identités et
-    libère chaque microservice de toute logique d'authentification propre, assurant une gestion
-    unifiée des rôles et des sessions.
-
-    \item[\ding{226}] \textbf{PostgreSQL}~\cite{PostgreSQLOrg} répond au patron \textit{Database per
-    Service} en offrant un moteur relationnel fiable et éprouvé pour chacune des bases de données
-    isolées des microservices.
-
-    \item[\ding{226}] \textbf{Docker} et \textbf{Docker Compose}~\cite{DockerDocs} garantissent des
-    environnements de déploiement reproductibles du poste de développement jusqu'à la production.
-
-    \item[\ding{226}] \textbf{Azure Pipelines}~\cite{AzurePipelines} automatise l'intégration continue
-    en ne recompilant que les services modifiés à chaque commit, réduisant les temps de build et
-    fiabilisant les livraisons.
-
-    \item[\ding{226}] \textbf{SigNOZ}~\cite{SigNOZIO} et \textbf{OpenTelemetry}~\cite{OpenTelemetryIO}
-    ont été intégrés pour assurer une observabilité complète de la plateforme, permettant de corréler
-    traces, métriques et logs à travers l'ensemble des services.
-
-\end{itemize}
 
 \section*{Conclusion}

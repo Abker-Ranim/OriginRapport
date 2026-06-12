@@ -23,33 +23,51 @@ correspondant soit à la fondation DevOps, soit à un ou plusieurs microservices
 de l'architecture cible alignés sur une phase du workflow de demande de crédit :
 
 \begin{itemize}
-    \item \textbf{Chapitre 1 : Contexte du Projet} — présente l'entreprise d'accueil, le contexte
-    du projet, la solution existante, la solution proposée et la méthodologie.
 
-    \item \textbf{Chapitre 2 : Analyse et spécification des besoins} — Ce chapitre aborde la définition des
-exigences fonctionnelles et non fonctionnelles. Nous y présentons en détail la planification des sprints
-ainsi que la gestion du backlog produit, tout en décrivant l'architecture technique de l'application.
+    \item[\ding{226}] \textbf{Chapitre 1 : Contexte du Projet} : présente l'entreprise
+    d'accueil, le contexte du projet, la solution existante, la solution proposée et la
+    méthodologie adoptée.
 
-    
+    \item[\ding{226}] \textbf{Chapitre 2 : Analyse et spécification des besoins} : aborde
+    la définition des exigences fonctionnelles et non fonctionnelles, la planification des
+    sprints, la gestion du backlog produit et l'architecture technique de l'application.
 
-    \item \textbf{Chapitre 3 : Sprint 1, Authentification et gestion de la clientèle} — présente la base de sécurité fondée sur Keycloak, ainsi que l’administration des agences, des gestionnaires et des rôles. Il introduit également la gestion des dossiers clients, les données de référence et l’exposition du domaine client aux autres services via les mécanismes d’interconnexion entre services.
+    \item[\ding{226}] \textbf{Chapitre 3 : Sprint 1 : Authentification et gestion de la
+    clientèle} : présente la base de sécurité fondée sur Keycloak, l'administration des
+    agences, des gestionnaires et des rôles, ainsi que la gestion des dossiers clients et
+    l'exposition du domaine client aux autres services.
 
-    \item \textbf{Chapitre 4 : Sprint 2, Service de Demande de Crédit} — détaille la création des demandes, la gestion des brouillons, le routage basé sur les produits et les transitions d’état du cycle de vie.
+    \item[\ding{226}] \textbf{Chapitre 4 : Sprint 2 : Service de Demande de Crédit} —
+    détaille la création des demandes, la gestion des brouillons, le routage basé sur les
+    produits et les transitions d'état du cycle de vie.
 
-    \item \textbf{Chapitre 5 : Sprint 3, Service d'Analyse} — décrit le dossier d’analyse, le workflow par étapes et le calcul du scoring pour les produits éligibles à l’analyse.
+    \item[\ding{226}] \textbf{Chapitre 5 : Sprint 3 : Service d'Analyse} : décrit le
+    dossier d'analyse, le workflow par étapes et le calcul du scoring pour les produits
+    éligibles à l'analyse.
 
-    \item \textbf{Chapitre 6 : Sprint 4, Service Checklist} — présente la checklist pré-comité qui consolide les documents et les sections de vérification requis avant la phase comité.
+    \item[\ding{226}] \textbf{Chapitre 6 : Sprint 4 : Service Checklist} : présente la
+    checklist pré-comité qui consolide les documents et les sections de vérification requis
+    avant la phase comité.
 
-    \item \textbf{Chapitre 7 : Sprint 5, Service d'Analyse des Risques} — décrit le formulaire d’analyse du risque de crédit (CRA), les modules d’avis et de Q\&R, ainsi que la piste d’audit associée.
+    \item[\ding{226}] \textbf{Chapitre 7 : Sprint 5 : Service d'Analyse des Risques} —
+    décrit le formulaire d'analyse du risque de crédit (CRA), les modules d'avis et de
+    Q\&R, ainsi que la piste d'audit associée.
 
-    \item \textbf{Chapitre 8 : Sprint 6, Services du comité de crédit et de décaissement} — présente le procès-verbal de décision du comité ainsi que le procès-verbal de décaissement, et la clôture du cycle de vie de la demande de crédit.
+    \item[\ding{226}] \textbf{Chapitre 8 : Sprint 6 : Services du comité de crédit et de décaissement} —
+    présente le procès-verbal de décision du comité ainsi que le procès-verbal de décaissement,
+et la clôture du cycle de vie de la demande de crédit.
 
-    \item \textbf{Chapitre 9 : Sprint 0, Fondation DevOps et Observabilité} — établit le
-    pipeline CI/CD Azure DevOps, l'automatisation de build Maven, la génération
-    d'images Docker, la topologie docker-compose de production avec le reverse proxy
-    Nginx, l'instrumentation OpenTelemetry de chaque service backend, et la stack
-    d'observabilité SigNoz utilisée pour le tracing distribué, les métriques et les logs
-    centralisés.
+    \item[\ding{226}] \textbf{Chapitre 9 : Sprint 7 : Recommandation par Intelligence
+    Artificielle} : présente le moteur d'analyse automatisée des demandes de crédit basé
+    sur l'IA, la génération du score de risque et de la recommandation d'octroi ou de refus,
+    ainsi que l'intégration de cette recommandation dans le flux de décision du comité de
+    crédit.
 
-    \item \textbf{Chapitre 10 : } —
+    \item[\ding{226}] \textbf{Chapitre 10 : Sprint 8 : Services d'Observabilité} : présente
+    l'instrumentation complète des neuf microservices Quarkus et du frontend React via
+    OpenTelemetry, la collecte centralisée des traces distribuées, métriques (JVM, HTTP,
+    gRPC) et logs structurés dans SigNoz alimenté par ClickHouse, ainsi que la visualisation
+    à travers dix tableaux de bord couvrant la santé du système, la latence des requêtes,
+    les taux d'erreur et les analyses métier par service.
+
 \end{itemize}

@@ -1,4 +1,4 @@
-\chapter{Contexte général}
+﻿\chapter{Contexte général}
 
 \section*{Introduction}
 
@@ -33,6 +33,14 @@ Le travail de l'entreprise s'articule autour de principes qui guident la collabo
 
 \subsection{Structure organisationnelle}
 
+La figure~\ref{fig:structure_org} illustre la structure organisationnelle d'IntechGeeks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img/Structure Organisationnelle.png}
+    \caption{Structure organisationnelle d'IntechGeeks}
+    \label{fig:structure_org}
+\end{figure}
 
 \section{Présentation du sujet}
 
@@ -41,103 +49,140 @@ une plateforme web de gestion du crédit. L'objectif est de digitaliser et sécu
 l'ensemble du cycle de vie du crédit, de l'entrée en relation client jusqu'à la décision
 finale et la traçabilité.
 
+\section{Étude de l'existant}
 
-\subsection{Contexte général du projet}
+La gestion des demandes de crédit au sein des institutions de microfinance en Tunisie
+s'inscrit dans un contexte de transformation numérique progressive. C'est dans ce cadre
+que la solution \textbf{DIGILAF} a été développée, avec pour ambition de digitaliser et
+de structurer l'intégralité du cycle de traitement des dossiers de crédit, depuis la
+soumission de la demande jusqu'au décaissement des fonds.
 
-Le secteur de la microfinance en Tunisie est supervisé par l'Autorité de Contrôle de la
-Microfinance (ACM). Les principaux acteurs — AKDI, Al Amal Microfinance, Zitouna Tamkeen,
-Advans Tunisie, Taysir Microfinance et Enda Tamweel, entre autres — jouent un rôle essentiel
-dans l'inclusion financière et le soutien des micro-entrepreneurs.
+\subsection*{\ding{226}~La solution DIGILAF}
 
-Malgré la croissance du secteur, la gestion du crédit reste un processus complexe,
-fortement documentaire et encore peu digitalisé en Tunisie et en Afrique en général.
+DIGILAF est une solution métier dédiée aux institutions de microfinance et aux banques de
+détail. Elle vise à :
 
-Dans ce contexte, IntechGeeks a initié \textbf{CrediWise} comme module de gestion du crédit
-intégré à la plateforme KAYA, un middleware cloud-native permettant l'interconnexion de
-systèmes financiers hétérogènes (Core Banking, CRM et ERP).
+\begin{itemize}
+    \item accroître l'efficacité opérationnelle et commerciale des équipes de traitement ;
+    \item standardiser le processus d'octroi de crédit à travers un workflow structuré et
+    contrôlé ;
+    \item maintenir un portefeuille de crédit sain grâce à une évaluation rigoureuse des
+    dossiers ;
+    \item garantir la traçabilité des décisions à chaque étape du cycle de vie d'une
+    demande.
+\end{itemize}
+
+\subsection*{\ding{226}~Implémentation actuelle}
+
+L'application en production repose sur \textbf{Microsoft Power Apps} en mode
+\textbf{Canvas App}, une plateforme low-code/no-code permettant la création rapide
+d'applications métier. Elle a été déployée pour remplacer des processus entièrement pilotés
+sous Excel, avec pour objectif de moderniser la gestion des dossiers de crédit sans
+mobiliser d'importantes ressources de développement logiciel.
+
+\subsection*{\ding{226}~Fonctionnalités couvertes}
+
+L'application prend en charge l'ensemble du cycle de traitement à travers les étapes
+suivantes :
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/process-steps.png}
+    \caption{Étapes du processus de traitement des dossiers de crédit — DIGILAF}
+    \label{fig:process_steps}
+\end{figure}
+
+Les transitions entre les différentes étapes sont partiellement automatisées via
+\textbf{Power Automate}, qui assure la mise à jour des statuts des demandes ainsi que
+l'envoi de notifications aux utilisateurs concernés.
+
+\subsection*{\ding{226}~Gestion des accès et des rôles}
+
+La répartition des responsabilités est gérée à travers le système de rôles de sécurité
+de la \textbf{Microsoft Power Platform}. Chaque utilisateur dispose d'un périmètre d'accès
+défini en fonction de son rôle dans le processus de traitement, garantissant que chaque
+étape est prise en charge par l'intervenant habilité.
 
 \section{Problématique}
 
-Les solutions existantes de gestion du crédit souffrent de plusieurs limites, notamment
-en matière de scalabilité, de flexibilité et de maintenabilité.
-
-Les processus restent souvent fragmentés, fortement dépendants de plateformes low-code
-propriétaires, ce qui entraîne :
-
-\begin{itemize}
-    \item une limitation des performances sous forte charge,
-    \item un coût élevé d'exploitation,
-    \item une faible interopérabilité avec les systèmes externes,
-    \item une traçabilité insuffisante des décisions,
-    \item et une absence d'automatisation avancée (scoring, règles métier).
-\end{itemize}
-
-Ces contraintes rendent nécessaire la conception d'une solution moderne, modulaire et
-évolutive capable de supporter des processus de crédit complexes.
-
-\section{Étude de l'existant}
-
-La solution étudiée dans ce projet est \textbf{DigiLAF}, une application de gestion des
-crédits développée avec Microsoft Power Apps (Canvas App) et déployée dans plusieurs
-institutions financières en Tunisie et en Afrique.
-
-Elle digitalise l'ensemble du cycle de crédit, de la création de la demande jusqu'au
-déblocage final, via un workflow basé sur le Business Process Flow.
-
-Le processus comprend cinq étapes principales :
+Bien que DIGILAF ait constitué une avancée significative par rapport aux pratiques manuelles
+basées sur Excel, l'analyse de la solution existante révèle plusieurs limitations
+structurelles qui freinent son évolution et compromettent sa capacité à répondre aux
+exigences croissantes des institutions financières :
 
 \begin{itemize}
-    \item \textbf{Analyse :} évaluation initiale et génération d'un rapport préliminaire.
-    \item \textbf{Checklist :} vérification des documents requis.
-    \item \textbf{Analyse des risques :} évaluation de la solvabilité et du risque.
-    \item \textbf{Revue comité :} validation et décision du comité de crédit.
-    \item \textbf{Visite de gestion :} contrôle terrain si nécessaire.
+    \item \textbf{Restrictions de personnalisation :} Power Apps impose des contraintes
+    importantes sur la conception des interfaces utilisateur, limitant la possibilité
+    d'offrir une expérience ergonomique et adaptée aux besoins métier spécifiques ;
+    \item \textbf{Limitation du volume de données :} la connexion à SQL Server est
+    plafonnée à 2\,000 lignes par requête, ce qui constitue un obstacle majeur pour les
+    institutions gérant un volume important de dossiers clients ;
+    \item \textbf{Problèmes de performance :} à mesure que la complexité de l'application
+    et le volume des données augmentent, des ralentissements significatifs sont observés,
+    affectant la productivité des équipes ;
+    \item \textbf{Dépendance à l'éditeur :} les mises à jour majeures de Power Apps peuvent
+    impacter les fonctionnalités existantes, exposant la solution à des dysfonctionnements
+    ou interruptions imprévus sans maîtrise du code source ;
+    \item \textbf{Coût des licences :} l'exploitation de Power Apps nécessite des licences
+    payantes par utilisateur, représentant une charge financière récurrente qui limite
+    l'extension de la solution à un plus grand nombre de collaborateurs.
 \end{itemize}
 
-Power Automate est utilisé pour automatiser les transitions et les notifications, tandis que
-la gestion des accès repose sur les rôles de la Power Platform.
-
-\subsection{Limites de la solution}
-
-Malgré ses avantages, DigiLAF présente plusieurs limitations :
-
-\begin{itemize}
-    \item scalabilité limitée,
-    \item coût élevé (licences et connecteurs),
-    \item dépendance forte à Microsoft,
-    \item limitation de volume de données (2\,000 enregistrements par requête),
-    \item fragmentation du workflow,
-    \item absence d'IA et de scoring automatique,
-    \item faible observabilité et traçabilité,
-    \item absence de portail client.
-\end{itemize}
+L'ensemble de ces contraintes rend la solution actuelle insuffisante pour accompagner
+efficacement la montée en charge et les ambitions de transformation numérique des
+institutions de microfinance.
 
 \section{Solution proposée}
 
-Pour répondre à ces limites, ce projet propose \textbf{CrediWise}, une plateforme web de
-gestion du crédit basée sur une architecture modulaire et indépendante des solutions
-low-code.
+Afin de répondre aux limitations identifiées et d'accompagner la croissance des institutions
+de microfinance, \textbf{CrediWise} est développé comme une refonte complète de la solution
+DIGILAF. Il ne s'agit pas d'une simple amélioration de l'existant, mais d'une réécriture
+intégrale reposant sur des technologies modernes, ouvertes et conçues pour garantir la
+pérennité du système.
 
-La plateforme centralise la gestion des clients, des demandes de crédit, des analyses,
-des décisions et de la traçabilité dans une interface unifiée.
+\subsection*{\ding{226}~Une architecture pensée pour la scalabilité}
 
-\subsection*{Fonctionnalités principales}
+CrediWise adopte une architecture à microservices dans laquelle chaque étape du cycle de
+crédit est prise en charge par un service indépendant : Gestionnaire, Client, Nouvelle
+Demande, Analyse, Checklist, Analyse des risques, Comité de crédit et Décaissement. Chaque
+service dispose de sa propre base de données PostgreSQL conformément au patron
+\textit{Database per Service}, garantissant l'isolation des responsabilités, une meilleure
+maintenabilité et une grande capacité de montée en charge.
 
-\begin{itemize}
-    \item \textbf{Administration des utilisateurs et agences :} gestion des rôles et profils.
-    \item \textbf{Gestion des clients :} centralisation des données clients.
-    \item \textbf{Gestion des demandes de crédit :} création, brouillons, garanties et export PDF.
-    \item \textbf{Routage par produit :} orientation automatique du workflow.
-    \item \textbf{Analyse du crédit :} dossier structuré avec étapes d'évaluation.
-    \item \textbf{Scoring et règles métier :} aide à la décision et traçabilité.
-    \item \textbf{Modules de contrôle :} checklist, risques et comité de crédit.
-    \item \textbf{Suivi du décaissement :} clôture du cycle de vie du crédit.
-\end{itemize}
+\subsection*{\ding{226}~Une indépendance vis-à-vis des éditeurs tiers}
 
-Sur le plan architectural, CrediWise repose sur une séparation claire entre frontend,
-backend, gestion d'identité (Keycloak) et bases de données. Cette architecture améliore
-la scalabilité, la maintenabilité et la traçabilité, tout en répondant aux limites de la
-solution existante.
+Contrairement à Power Apps, CrediWise repose entièrement sur des technologies open source
+telles que Quarkus, React, PostgreSQL et Keycloak. Ce choix offre une maîtrise complète du
+code source et réduit la dépendance à des plateformes propriétaires, tout en limitant les
+risques liés aux changements de licences ou aux évolutions imposées par des éditeurs tiers.
+
+\subsection*{\ding{226}~Une expérience utilisateur moderne et personnalisable}
+
+L'interface utilisateur, développée avec React et TypeScript, est entièrement personnalisable
+afin de répondre aux besoins métier de l'institution. Elle s'appuie sur un mécanisme de
+contrôle d'accès basé sur les rôles via Keycloak, garantissant que chaque acteur du
+processus — Front Office, CRO, Analyste Risque, Décideur Agence ou Décideur Siège — accède
+uniquement aux fonctionnalités correspondant à ses responsabilités.
+
+\subsection*{\ding{226}~L'intelligence artificielle au service de la décision de crédit}
+
+CrediWise intègre un module de recommandation basé sur l'intelligence artificielle, capable
+d'analyser les données d'un dossier de crédit et de proposer une recommandation argumentée.
+Cet outil assiste les analystes dans leur processus d'évaluation sans se substituer à leur
+jugement, contribuant ainsi à améliorer la cohérence des décisions et à réduire les délais
+de traitement.
+
+\subsection*{\ding{226}~Une observabilité et une traçabilité complètes}
+
+L'ensemble des services est instrumenté à l'aide d'OpenTelemetry et supervisé via SigNoz.
+Cette infrastructure permet de suivre les performances de la plateforme, de surveiller les
+flux de traitement et de détecter rapidement les anomalies éventuelles, offrant ainsi un
+niveau de visibilité absent de la solution existante.
+
+Ainsi, CrediWise constitue une réponse cohérente et durable aux limites identifiées dans
+DIGILAF, en mettant l'accent sur la performance, l'évolutivité, la maîtrise technologique
+et l'amélioration de l'expérience utilisateur.
+
 
 \section{Méthodologie adoptée}
 
@@ -149,18 +194,12 @@ des livrables tout au long du cycle de développement.
 
 \subsection{Choix de la méthodologie de travail}
 
-Afin d'assurer une gestion efficace du projet, nous avons adopté la méthodologie
-\textbf{Agile Scrum}~\cite{BocasayScrum}. Cette approche favorise une livraison progressive des fonctionnalités
-tout en permettant une adaptation continue aux besoins.
-
-Les principaux avantages de Scrum sont :
-
-\begin{itemize}
-    \item Une meilleure visibilité sur l'avancement du projet.
-    \item Une implication régulière des parties prenantes.
-    \item Une priorisation des besoins selon leur importance.
-    \item Une organisation du travail en sprints, facilitant le suivi du projet.
-\end{itemize}
+Pour assurer une gestion efficace du projet, nous avons adopté la méthodologie
+\textbf{Agile Scrum}~\cite{BocasayScrum}. Cette approche permet une organisation du travail
+en sprints, favorise la livraison progressive des fonctionnalités et facilite l'adaptation
+aux évolutions des besoins. Elle offre également une meilleure visibilité sur l'avancement
+du projet, tout en impliquant régulièrement les parties prenantes dans le processus de
+développement.
 
 \subsection{Répartition des rôles}
 
